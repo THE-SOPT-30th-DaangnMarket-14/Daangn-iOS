@@ -24,6 +24,7 @@
 		C784C67D282F8B9900AB0A2A /* NanumBarunGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C679282F8B9800AB0A2A /* NanumBarunGothicBold.otf */; };
 		C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */; };
 		C784C67F282F8B9900AB0A2A /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */; };
+		C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		C784C679282F8B9800AB0A2A /* NanumBarunGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.otf; sourceTree = "<group>"; };
 		C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicUltraLight.otf; sourceTree = "<group>"; };
 		C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.otf; sourceTree = "<group>"; };
+		C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				C784C66D282F8B5500AB0A2A /* Assets.xcassets */,
 				C784C66F282F8B5500AB0A2A /* LaunchScreen.storyboard */,
 				C784C672282F8B5500AB0A2A /* Info.plist */,
+				C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */,
 			);
 			path = DaangnMarket;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				C73BFF59282F8DFA003ECFF8 /* WritingViewController.storyboard in Resources */,
 				C784C671282F8B5500AB0A2A /* LaunchScreen.storyboard in Resources */,
 				C73BFF57282F8DCD003ECFF8 /* HomeViewController.storyboard in Resources */,
+				C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */,
 				C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */,
 				C784C67C282F8B9900AB0A2A /* NanumBarunGothicLight.otf in Resources */,
 				C784C66E282F8B5500AB0A2A /* Assets.xcassets in Resources */,
