@@ -25,6 +25,7 @@
 		C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */; };
 		C784C67F282F8B9900AB0A2A /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */; };
 		C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */; };
+		C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicUltraLight.otf; sourceTree = "<group>"; };
 		C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.otf; sourceTree = "<group>"; };
 		C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		C73BFF50282F8CFF003ECFF8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C7D8A53A2832A2C4004CA3F9 /* Extension */,
 				C73BFF53282F8D1B003ECFF8 /* ImagePicker */,
 				C73BFF52282F8D16003ECFF8 /* Writing */,
 				C73BFF51282F8D12003ECFF8 /* Home */,
@@ -138,6 +141,14 @@
 				C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		C7D8A53A2832A2C4004CA3F9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +243,7 @@
 				C784C665282F8B5100AB0A2A /* AppDelegate.swift in Sources */,
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
+				C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
