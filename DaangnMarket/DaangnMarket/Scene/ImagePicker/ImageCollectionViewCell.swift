@@ -23,7 +23,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = .clear
         view.layer.cornerRadius = view.frame.height / 2
         view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.daangnBlack.cgColor
+        view.layer.borderColor = UIColor.daangnWhite.cgColor
         
         view.layer.shadowColor = UIColor.daangnBlack.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
