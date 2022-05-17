@@ -16,6 +16,12 @@ class HomeViewController: UIViewController {
             saleTableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
     }
+    @IBOutlet weak var addBtn: UIButton! {
+        didSet {
+            addBtn.makeRounded(cornerRadius: addBtn.frame.width / 2)
+            addBtn.addShadow(offset: CGSize(width: 0, height: 3))
+        }
+    }
     
     var saleDummyData = [
         SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
@@ -36,6 +42,10 @@ class HomeViewController: UIViewController {
     private func registerCell() {
         let nib = UINib(nibName: SaleTableViewCell.className, bundle: nil)
         self.saleTableView.register(nib, forCellReuseIdentifier: SaleTableViewCell.className)
+    }
+    
+    @IBAction func tapAddBtn(_ sender: Any) {
+        
     }
 }
 

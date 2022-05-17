@@ -27,4 +27,13 @@ extension UIView {
         
         self.layer.masksToBounds = true
     }
+    
+    /// UIView의 그림자를 설정하는 메서드
+    func addShadow(offset: CGSize, color: UIColor = .gray, opacity: Float = 0.25, radius: CGFloat = 3.0) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+    }
 }
