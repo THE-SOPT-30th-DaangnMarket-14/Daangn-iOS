@@ -26,6 +26,7 @@
 		C784C67F282F8B9900AB0A2A /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */; };
 		C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */; };
 		C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */; };
+		C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C7D8A53D2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		C7D8A53E2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,9 @@
 		C73BFF51282F8D12003ECFF8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C7962C0A28334C6E0005B27C /* Cell */,
 				C73BFF56282F8DCD003ECFF8 /* HomeViewController.storyboard */,
+				C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -143,6 +147,13 @@
 				C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		C7962C0A28334C6E0005B27C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C7D8A53A2832A2C4004CA3F9 /* Extension */ = {
@@ -247,6 +258,7 @@
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
 				C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */,
+				C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
