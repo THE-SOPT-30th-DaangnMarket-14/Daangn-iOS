@@ -9,8 +9,12 @@ import UIKit
 
 class SaleTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var postImageView: UIImageView! {
+        didSet {
+            postImageView.makeRounded(cornerRadius: 7)
+        }
+    }
+    @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var localTimeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
@@ -24,8 +28,8 @@ class SaleTableViewCell: UITableViewCell {
     
     func setData(data: SaleModel) {
         postImageView.image = UIImage(named: data.imageName)
-        titleLabel.text = data.titleName
-        localTimeLabel.text = "\(data.localName) ・ \(data.updateTime)"
-        priceLabel.text = "\(data.price) 원"
+        postTitleLabel.text = data.titleName
+        localTimeLabel.text = "\(data.localName) ・ \(data.updateTime) 분/시간 전"
+        priceLabel.text = "\(data.price.commaToString()) 원"
     }
 }

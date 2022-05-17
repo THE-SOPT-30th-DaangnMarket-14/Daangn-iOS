@@ -18,14 +18,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="SaleTableViewCell" customModule="DaangnMarket" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SaleTableViewCell" rowHeight="127" id="KGk-i7-Jjw" customClass="SaleTableViewCell" customModule="DaangnMarket" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ljK-gy-GpB">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iosImgHomeList" translatesAutoresizingMaskIntoConstraints="NO" id="ljK-gy-GpB">
                         <rect key="frame" x="16" y="14" width="99" height="99"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ljK-gy-GpB" secondAttribute="height" multiplier="1:1" id="afw-sg-YqB"/>
@@ -66,13 +66,14 @@
             <connections>
                 <outlet property="localTimeLabel" destination="tZ2-FK-qYj" id="Q7G-7U-ge5"/>
                 <outlet property="postImageView" destination="ljK-gy-GpB" id="AuW-9E-cSR"/>
+                <outlet property="postTitleLabel" destination="IIW-6k-Ahh" id="9Ya-gz-2t3"/>
                 <outlet property="priceLabel" destination="A2n-Mm-nng" id="bw7-TG-Y66"/>
-                <outlet property="titleLabel" destination="IIW-6k-Ahh" id="ckI-Vy-EuS"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="140.625"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="iosImgHomeList" width="100" height="100"/>
         <namedColor name="daangnBlack">
             <color red="0.12941176470588237" green="0.14117647058823529" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
