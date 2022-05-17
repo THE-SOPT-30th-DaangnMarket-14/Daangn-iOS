@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var saleTableView: UITableView! {
         didSet {
             saleTableView.dataSource = self
+            saleTableView.rowHeight = 127
+            saleTableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
     }
     
@@ -28,15 +30,24 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerCell()
+    }
+    
+    private func registerCell() {
+        let nib = UINib(nibName: SaleTableViewCell.className, bundle: nil)
+        self.saleTableView.register(nib, forCellReuseIdentifier: SaleTableViewCell.className)
     }
 }
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return saleDummyData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: SaleTableViewCell.className, for: indexPath) as! SaleTableViewCell
+        
+        cell.setData(data: saleDummyData[indexPath.row])
+        return cell
     }
 }
