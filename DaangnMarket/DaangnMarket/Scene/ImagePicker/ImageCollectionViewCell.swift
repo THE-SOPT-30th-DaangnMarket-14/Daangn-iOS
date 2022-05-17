@@ -48,4 +48,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
         countView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         countView.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
+    
+    func configureCell(_ image: UIImage){
+        self.imageView.image = image
+    }
 }
