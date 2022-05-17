@@ -29,10 +29,10 @@ final class DaangnTabBarController: UITabBarController {
         let myDaangnViewController = UIViewController()
         
         homeViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_home_24"), selectedImage: UIImage(named: "ic_home_24_fill"))
-        viliageViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_viliage_24"), selectedImage: UIImage(named: "icn_search_selected"))
-        myLocationViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_gps_24"), selectedImage: UIImage(named: "icn_reels_selected"))
+        viliageViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_viliage_24"), selectedImage: UIImage(named: "icViliage24Fill"))
+        myLocationViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_gps_24"), selectedImage: UIImage(named: "icGps24Fill"))
         chatViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_talk_24"), selectedImage: UIImage(named: "ic_talk_24_fill"))
-        myDaangnViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_mypage_24"), selectedImage: UIImage(named: "icn_profile_selected"))
+        myDaangnViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_mypage_24"), selectedImage: UIImage(named: "icMypage24Fill"))
         
         setViewControllers([homeViewController, viliageViewController, myLocationViewController, chatViewController, myDaangnViewController], animated: true)
     }
