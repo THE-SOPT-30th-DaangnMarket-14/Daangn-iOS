@@ -28,11 +28,15 @@ final class DaangnTabBarController: UITabBarController {
         let chatViewController = UIViewController()
         let myDaangnViewController = UIViewController()
         
-        homeViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_home_24"), selectedImage: UIImage(named: "ic_home_24_fill"))
-        viliageViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_viliage_24"), selectedImage: UIImage(named: "icViliage24Fill"))
-        myLocationViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_gps_24"), selectedImage: UIImage(named: "icGps24Fill"))
-        chatViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_talk_24"), selectedImage: UIImage(named: "ic_talk_24_fill"))
-        myDaangnViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ic_mypage_24"), selectedImage: UIImage(named: "icMypage24Fill"))
+        homeViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "ic_home_24"), selectedImage: UIImage(named: "ic_home_24_fill"))
+        viliageViewController.tabBarItem = UITabBarItem(title: "동네생활", image: UIImage(named: "ic_viliage_24"), selectedImage: UIImage(named: "icViliage24Fill"))
+        myLocationViewController.tabBarItem = UITabBarItem(title: "내 근처", image: UIImage(named: "ic_gps_24"), selectedImage: UIImage(named: "icGps24Fill"))
+        chatViewController.tabBarItem = UITabBarItem(title: "채팅", image: UIImage(named: "ic_talk_24"), selectedImage: UIImage(named: "ic_talk_24_fill"))
+        myDaangnViewController.tabBarItem = UITabBarItem(title: "나의 당근", image: UIImage(named: "ic_mypage_24"), selectedImage: UIImage(named: "icMypage24Fill"))
+        
+        [homeViewController, viliageViewController, myLocationViewController, chatViewController, myDaangnViewController].forEach {
+            $0.tabBarItem.setTitleTextAttributes([NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.daangnBlack], for: .selected)
+        }
         
         setViewControllers([homeViewController, viliageViewController, myLocationViewController, chatViewController, myDaangnViewController], animated: true)
     }
