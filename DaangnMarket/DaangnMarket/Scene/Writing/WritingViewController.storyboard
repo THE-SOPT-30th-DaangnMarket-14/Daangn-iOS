@@ -6,6 +6,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,8 +31,70 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfL-i7-uhH">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZI-PC-cNk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="96" height="106"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3L-xW-FFv">
+                                                                <rect key="frame" x="16" y="21" width="64" height="64"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="g3L-xW-FFv" secondAttribute="height" id="E6d-CV-6Z7"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="camera" imagePlacement="top" imagePadding="6">
+                                                                    <attributedString key="attributedTitle">
+                                                                        <fragment content="0/10">
+                                                                            <attributes>
+                                                                                <color key="NSColor" red="0.52549019607843139" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <font key="NSFont" size="11" name="NanumBarunGothicOTF"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                    </attributedString>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="ButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="vlJ-Tg-KVw"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="g3L-xW-FFv" secondAttribute="trailing" constant="16" id="HhB-Ve-2wf"/>
+                                                            <constraint firstItem="g3L-xW-FFv" firstAttribute="leading" secondItem="OZI-PC-cNk" secondAttribute="leading" constant="16" id="MpE-c0-HvN"/>
+                                                            <constraint firstItem="g3L-xW-FFv" firstAttribute="centerY" secondItem="OZI-PC-cNk" secondAttribute="centerY" id="bjx-dC-rnZ"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PQ7-Ku-vWL">
+                                                        <rect key="frame" x="96" y="0.0" width="318" height="106"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gpg-94-lFy">
+                                                            <size key="itemSize" width="90" height="128"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7b5-d3-D8n">
+                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QBB-GQ-VWz">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </collectionViewCellContentView>
+                                                                <size key="customSize" width="90" height="90"/>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                    </collectionView>
+                                                </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="OZI-PC-cNk" firstAttribute="width" secondItem="ZfL-i7-uhH" secondAttribute="width" multiplier="0.231884" id="ER5-ve-4J9"/>
+                                                    <constraint firstItem="OZI-PC-cNk" firstAttribute="leading" secondItem="ZfL-i7-uhH" secondAttribute="leading" id="GKX-ue-BND"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PQ7-Ku-vWL" secondAttribute="bottom" id="all-KD-Rv0"/>
+                                                    <constraint firstItem="OZI-PC-cNk" firstAttribute="top" secondItem="ZfL-i7-uhH" secondAttribute="top" id="qsU-3i-T9n"/>
+                                                    <constraint firstItem="PQ7-Ku-vWL" firstAttribute="top" secondItem="ZfL-i7-uhH" secondAttribute="top" id="rwi-3F-xpB"/>
                                                     <constraint firstAttribute="height" constant="106" id="tJ7-2y-DUY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="OZI-PC-cNk" secondAttribute="bottom" id="u7L-yw-ytI"/>
+                                                    <constraint firstItem="PQ7-Ku-vWL" firstAttribute="leading" secondItem="OZI-PC-cNk" secondAttribute="trailing" id="wUA-SD-tGT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PQ7-Ku-vWL" secondAttribute="trailing" id="x3X-u0-1sq"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="awl-RT-HFq">
@@ -43,7 +106,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="kWB-Et-Ja7"/>
                                                         </constraints>
                                                         <color key="textColor" name="daangnGray03"/>
-                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="₩ 가격 (선택사항)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTX-7W-KC7">
@@ -52,7 +115,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="5Hb-XF-5OA"/>
                                                         </constraints>
                                                         <color key="textColor" name="daangnGray03"/>
-                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                                     </textView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="서림동에 올릴 게시글 내용을 작성해주세요. (가품 및 판매 금지품목은 게시가 제한될 수 있어요)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-LK-wFN">
@@ -62,7 +125,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="455" id="gwv-AF-rjo"/>
                                                         </constraints>
                                                         <color key="textColor" name="daangnGray03"/>
-                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                 </subviews>
@@ -102,6 +165,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="cameraButton" destination="g3L-xW-FFv" id="Fpp-cW-iHm"/>
                         <outlet property="contentTextView" destination="DgY-LK-wFN" id="Qix-mf-0g3"/>
                         <outlet property="priceTextView" destination="MTX-7W-KC7" id="iwz-AL-2eh"/>
                         <outlet property="scrollView" destination="97N-Sh-VUK" id="LJI-2b-yG9"/>
@@ -114,6 +178,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="24" height="24"/>
         <namedColor name="daangnGray03">
             <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

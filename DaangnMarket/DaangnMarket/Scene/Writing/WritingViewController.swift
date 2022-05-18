@@ -9,7 +9,16 @@ import UIKit
 
 class WritingViewController: UIViewController {
     
+    var imageNum = 0 {
+        didSet {
+            cameraButton.titleLabel?.text = "\(imageNum)/10"
+        }
+    }
+    
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var cameraButton: UIButton!
+    
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var priceTextView: UITextView!
     @IBOutlet weak var contentTextView: UITextView!
@@ -20,10 +29,6 @@ class WritingViewController: UIViewController {
         setUp()
         setToolBar()
         configureUI()
-    }
-    
-    @objc func doneBtnClicked() {
-        self.view.endEditing(true)
     }
     
     func setUp() {
@@ -39,6 +44,11 @@ class WritingViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bounces = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cameraButton.titleLabel?.text = "\(imageNum)/10"
+        cameraButton.makeRounded(cornerRadius: 4)
+        cameraButton.layer.borderWidth = 1
+        cameraButton.layer.borderColor = UIColor.daangnGray01.cgColor
         
         [titleTextView, priceTextView, contentTextView].forEach {
             $0?.isScrollEnabled = false
@@ -65,6 +75,19 @@ class WritingViewController: UIViewController {
     }
 }
 
+// Action
+extension WritingViewController {
+    @objc func doneBtnClicked() {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func ButtonAction(_ sender: UIButton){
+        print("카메라 버튼 클릭 ")
+        self.navigationController?.pushViewController(ImagePickerViewController(), animated: true)
+     }
+}
+
+// TextView Delegate
 extension WritingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
