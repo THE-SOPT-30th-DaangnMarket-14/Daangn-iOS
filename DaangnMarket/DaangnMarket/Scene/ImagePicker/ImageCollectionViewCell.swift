@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ImageCollectionViewCellDelegate: AnyObject {
+    func didSelectCountButton(_ cell: ImageCollectionViewCell)
+}
+
 class ImageCollectionViewCell: UICollectionViewCell {
     //MARK: - Outlet
     @IBOutlet weak var imageView: UIImageView!
@@ -16,12 +20,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         UINib(nibName: "ImageCollectionViewCell", bundle: nil)
     }
+    var isSelectedStatus: Bool = false
+    var index: Int = 0
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        configureView()
-    }
+    weak var delegate: ImageCollectionViewCellDelegate?
     
     //MARK: - View
     var countButton: UIButton = {
@@ -34,9 +36,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureView()
+    }
+    
     //MARK: - Configure
     private func configureView(){
-        imageView.addSubview(countButton)
+        countButton.addTarget(self, action: #selector(didTouchDownCountButton), for: .touchUpInside)
+        contentView.addSubview(countButton)
         
         countButton.translatesAutoresizingMaskIntoConstraints = false
         countButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 6).isActive = true
@@ -45,11 +54,20 @@ class ImageCollectionViewCell: UICollectionViewCell {
         countButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureCell(_ image: UIImage, indexPath: IndexPath){
-        self.imageView.image = image
+    func configureCell(_ data: SampleData){
+        self.imageView.image = UIImage(named: data.image)
+        //countButton.isHidden = indexPath.row == 0 ? true : false
         
-        countButton.isHidden = indexPath.row == 0 ? true : false
-        countButton.setTitle(String(indexPath.row), for: .selected)
-        countButton.isSelected = true
+        if data.selectedNumber != nil {
+            
+            guard let selectedNumber = data.selectedNumber else {return}
+            countButton.setTitle(String(selectedNumber), for: .selected)
+        }
+        countButton.isSelected = data.selectedNumber != nil ? true : false
+    }
+    
+    //MARK: - @objc
+    @objc private func didTouchDownCountButton(){
+        delegate?.didSelectCountButton(self)
     }
 }
