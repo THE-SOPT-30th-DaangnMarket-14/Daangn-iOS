@@ -1,28 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="Y6W-OH-hqX" customClass="HomeViewController" customModule="DaangnMarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bsk-qp-abJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="NBZ-Sm-v1j"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0uX-C5-wbY">
+                                <rect key="frame" x="0.0" y="83" width="414" height="779"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weV-0u-ntw">
+                                <rect key="frame" x="346" y="796" width="52" height="52"/>
+                                <color key="backgroundColor" name="daangnOrange"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="OhG-Br-cik"/>
+                                    <constraint firstAttribute="width" constant="52" id="xbX-n1-WU5"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plusIcon"/>
+                                <connections>
+                                    <action selector="tapAddBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jo8-H9-7Pt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0uX-C5-wbY" firstAttribute="top" secondItem="bsk-qp-abJ" secondAttribute="bottom" id="1op-6k-4uB"/>
+                            <constraint firstItem="0uX-C5-wbY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2HH-co-Clo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="weV-0u-ntw" secondAttribute="bottom" constant="14" id="BSC-Fq-1yb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0uX-C5-wbY" secondAttribute="trailing" id="Lga-q3-nYg"/>
+                            <constraint firstItem="bsk-qp-abJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="MnO-9K-7h1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0uX-C5-wbY" secondAttribute="bottom" id="OMB-Qe-xsi"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="weV-0u-ntw" secondAttribute="trailing" constant="16" id="RAI-1C-gQF"/>
+                            <constraint firstItem="bsk-qp-abJ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="lb6-0i-0vw"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bsk-qp-abJ" secondAttribute="trailing" id="wj3-mp-oAh"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addBtn" destination="weV-0u-ntw" id="9h2-FY-LfH"/>
+                        <outlet property="saleTableView" destination="0uX-C5-wbY" id="kuV-Rt-zm5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="89.855072463768124" y="78.348214285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="plusIcon" width="16" height="16"/>
+        <namedColor name="daangnOrange">
+            <color red="0.93333333333333335" green="0.52156862745098043" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
