@@ -20,6 +20,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         UINib(nibName: "ImageCollectionViewCell", bundle: nil)
     }
+    var isSelectedImage: Bool = false {
+        didSet{
+            if isSelectedImage {
+                imageView.layer.borderColor = UIColor.daangnOrange.cgColor
+            } else{
+                imageView.layer.borderColor = UIColor.clear.cgColor
+            }
+        }
+    }
     var isSelectedStatus: Bool = false
     var index: Int = 0
     
@@ -52,6 +61,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
         countButton.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -6).isActive = true
         countButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
         countButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
     func configureCell(_ data: SampleData){
@@ -59,11 +71,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
         //countButton.isHidden = indexPath.row == 0 ? true : false
         
         if data.selectedNumber != nil {
-            
             guard let selectedNumber = data.selectedNumber else {return}
             countButton.setTitle(String(selectedNumber), for: .selected)
         }
         countButton.isSelected = data.selectedNumber != nil ? true : false
+        isSelectedImage = data.selectedNumber != nil ? true : false
     }
     
     //MARK: - @objc
