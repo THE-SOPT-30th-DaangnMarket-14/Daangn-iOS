@@ -17,39 +17,39 @@ class ImageCollectionViewCell: UICollectionViewCell {
         UINib(nibName: "ImageCollectionViewCell", bundle: nil)
     }
     
-    //MARK: - View
-    var countView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        view.backgroundColor = .clear
-        view.layer.cornerRadius = view.frame.height / 2
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.daangnWhite.cgColor
-        
-        view.layer.shadowColor = UIColor.daangnBlack.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.5
-        
-        return view
-    }()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configureView()
     }
     
+    //MARK: - View
+    var countButton: UIButton = {
+        let view = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        view.setBackgroundImage(UIImage(named: "ic_count_circle_unselect_24"), for: .normal)
+        view.setBackgroundImage(UIImage(named: "ic_count_circle_non_24"), for: .selected)
+        view.setTitleColor(UIColor.daangnWhite, for: .selected)
+        view.titleLabel?.font = UIFont(name: "NanumBarunGothicBold", size: 14)
+        
+        return view
+    }()
+    
     //MARK: - Configure
     private func configureView(){
-        imageView.addSubview(countView)
+        imageView.addSubview(countButton)
         
-        countView.translatesAutoresizingMaskIntoConstraints = false
-        countView.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8).isActive = true
-        countView.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -8).isActive = true
-        countView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        countView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        countButton.translatesAutoresizingMaskIntoConstraints = false
+        countButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 6).isActive = true
+        countButton.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -6).isActive = true
+        countButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        countButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
-    func configureCell(_ image: UIImage){
+    func configureCell(_ image: UIImage, indexPath: IndexPath){
         self.imageView.image = image
+        
+        countButton.isHidden = indexPath.row == 0 ? true : false
+        countButton.setTitle(String(indexPath.row), for: .selected)
+        countButton.isSelected = true
     }
 }
