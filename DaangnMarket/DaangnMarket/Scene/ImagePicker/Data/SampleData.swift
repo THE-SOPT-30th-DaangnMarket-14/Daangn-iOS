@@ -8,25 +8,30 @@
 import Foundation
 
 struct SampleData {
-    static let sample = [
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list",
-        "ios_img_home_list","ios_img_home_list"
+    let image: String
+    var selectedNumber: Int?
+}
+
+extension SampleData {
+    static let sample: [SampleData] = [
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil),
+        SampleData(image: "ios_img_home_list", selectedNumber: nil)
     ]
 }
