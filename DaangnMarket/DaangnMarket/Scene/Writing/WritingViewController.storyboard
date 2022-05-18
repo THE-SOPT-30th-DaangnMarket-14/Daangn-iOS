@@ -3,10 +3,16 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NanumBarunGothic.otf">
+            <string>NanumBarunGothicOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Writing View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -16,36 +22,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97N-Sh-VUK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97N-Sh-VUK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2r-9Q-hlF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2r-9Q-hlF">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfL-i7-uhH">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
-                                                <color key="backgroundColor" red="0.92549019610000005" green="0.71853898039999997" blue="0.718700805" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="106" id="tJ7-2y-DUY"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="awl-RT-HFq">
-                                                <rect key="frame" x="0.0" y="106" width="414" height="800"/>
-                                                <color key="backgroundColor" red="0.0019465054840000001" green="0.55104698129999996" blue="0.86078917980000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="800" id="MF5-Zg-5Yl"/>
-                                                </constraints>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="awl-RT-HFq">
+                                                <rect key="frame" x="0.0" y="106" width="414" height="933.5"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="글 제목" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1QY-DH-foy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="237.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="kWB-Et-Ja7"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="daangnGray03"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="₩ 가격 (선택사항)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTX-7W-KC7">
+                                                        <rect key="frame" x="0.0" y="237.5" width="414" height="237"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="5Hb-XF-5OA"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="daangnGray03"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                                                    </textView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="서림동에 올릴 게시글 내용을 작성해주세요. (가품 및 판매 금지품목은 게시가 제한될 수 있어요)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-LK-wFN">
+                                                        <rect key="frame" x="0.0" y="474.5" width="414" height="459"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="455" id="gwv-AF-rjo"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="daangnGray03"/>
+                                                        <fontDescription key="fontDescription" name="NanumBarunGothicOTF" family="NanumBarunGothicOTF" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="ZfL-i7-uhH" firstAttribute="leading" secondItem="a2r-9Q-hlF" secondAttribute="leading" id="FDc-LL-YoL"/>
+                                            <constraint firstAttribute="bottom" secondItem="awl-RT-HFq" secondAttribute="bottom" id="JKy-PF-FOw"/>
                                             <constraint firstAttribute="trailing" secondItem="awl-RT-HFq" secondAttribute="trailing" id="Lad-3p-04Y"/>
                                             <constraint firstItem="ZfL-i7-uhH" firstAttribute="top" secondItem="a2r-9Q-hlF" secondAttribute="top" id="WHq-Qi-jg7"/>
                                             <constraint firstAttribute="trailing" secondItem="ZfL-i7-uhH" secondAttribute="trailing" id="WKi-1x-Uc2"/>
                                             <constraint firstItem="awl-RT-HFq" firstAttribute="leading" secondItem="a2r-9Q-hlF" secondAttribute="leading" id="h9I-KN-ANe"/>
                                             <constraint firstItem="awl-RT-HFq" firstAttribute="top" secondItem="ZfL-i7-uhH" secondAttribute="bottom" id="yJz-WZ-Mng"/>
-                                            <constraint firstAttribute="bottom" secondItem="awl-RT-HFq" secondAttribute="bottom" id="yeM-Ob-qbd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -69,8 +100,12 @@
                             <constraint firstItem="97N-Sh-VUK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="v9p-i6-iq5"/>
                         </constraints>
                     </view>
+                    <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="contentTextView" destination="DgY-LK-wFN" id="Qix-mf-0g3"/>
+                        <outlet property="priceTextView" destination="MTX-7W-KC7" id="iwz-AL-2eh"/>
                         <outlet property="scrollView" destination="97N-Sh-VUK" id="LJI-2b-yG9"/>
+                        <outlet property="titleTextView" destination="1QY-DH-foy" id="yK4-vo-R1q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -79,6 +114,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="daangnGray03">
+            <color red="0.7686274509803922" green="0.7686274509803922" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

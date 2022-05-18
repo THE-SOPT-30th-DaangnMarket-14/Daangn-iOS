@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var localSelectBtn: UIButton!
+    @IBOutlet weak var orangeDotImageView: UIImageView!
     @IBOutlet weak var saleTableView: UITableView! {
         didSet {
             saleTableView.dataSource = self
@@ -37,11 +39,21 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
+        configureUI()
     }
     
     private func registerCell() {
         let nib = UINib(nibName: SaleTableViewCell.className, bundle: nil)
         self.saleTableView.register(nib, forCellReuseIdentifier: SaleTableViewCell.className)
+    }
+    
+    private func configureUI() {
+        localSelectBtn.setTitle("서림동", for: .normal)
+        orangeDotImageView.isHidden = false
+    }
+    
+    @IBAction func tapLocalSelectBtn(_ sender: Any) {
+        
     }
     
     @IBAction func tapAddBtn(_ sender: Any) {
@@ -55,7 +67,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SaleTableViewCell.className, for: indexPath) as! SaleTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SaleTableViewCell.className, for: indexPath) as? SaleTableViewCell else { return UITableViewCell() }
         
         cell.setData(data: saleDummyData[indexPath.row])
         return cell
