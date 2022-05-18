@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icSearch24.png",
+      "filename" : "icGps24Unfill.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icSearch24@2x.png",
+      "filename" : "icGps24Unfill@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icSearch24@3x.png",
+      "filename" : "icGps24Unfill@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
