@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icSearch24.png",
+      "filename" : "icHome24Fill.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icSearch24@2x.png",
+      "filename" : "icHome24Fill@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icSearch24@3x.png",
+      "filename" : "icHome24Fill@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
