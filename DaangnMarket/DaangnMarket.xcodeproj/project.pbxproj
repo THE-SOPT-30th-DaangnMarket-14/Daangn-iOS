@@ -26,8 +26,14 @@
 		C784C67D282F8B9900AB0A2A /* NanumBarunGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C679282F8B9800AB0A2A /* NanumBarunGothicBold.otf */; };
 		C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */; };
 		C784C67F282F8B9900AB0A2A /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */; };
+		C7962C0D28334C9C0005B27C /* SaleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7962C0B28334C9C0005B27C /* SaleTableViewCell.swift */; };
+		C7962C0E28334C9C0005B27C /* SaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7962C0C28334C9C0005B27C /* SaleTableViewCell.xib */; };
+		C7962C102833506A0005B27C /* SaleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7962C0F2833506A0005B27C /* SaleModel.swift */; };
+		C7962C122833DC820005B27C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7962C112833DC820005B27C /* UIView+.swift */; };
+		C7962C142833DD790005B27C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7962C132833DD790005B27C /* Int+.swift */; };
 		C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */; };
 		C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */; };
+		C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,10 +55,16 @@
 		C784C679282F8B9800AB0A2A /* NanumBarunGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.otf; sourceTree = "<group>"; };
 		C784C67A282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicUltraLight.otf; sourceTree = "<group>"; };
 		C784C67B282F8B9900AB0A2A /* NanumBarunGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.otf; sourceTree = "<group>"; };
+		C7962C0B28334C9C0005B27C /* SaleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleTableViewCell.swift; sourceTree = "<group>"; };
+		C7962C0C28334C9C0005B27C /* SaleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleTableViewCell.xib; sourceTree = "<group>"; };
+		C7962C0F2833506A0005B27C /* SaleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleModel.swift; sourceTree = "<group>"; };
+		C7962C112833DC820005B27C /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		C7962C132833DD790005B27C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
 		C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		C7D8A53D2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		C7D8A53E2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +95,10 @@
 		C73BFF51282F8D12003ECFF8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C7962C0A28334C6E0005B27C /* Cell */,
 				C73BFF56282F8DCD003ECFF8 /* HomeViewController.storyboard */,
+				C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */,
+				C7962C0F2833506A0005B27C /* SaleModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -150,11 +165,22 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		C7962C0A28334C6E0005B27C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C7962C0B28334C9C0005B27C /* SaleTableViewCell.swift */,
+				C7962C0C28334C9C0005B27C /* SaleTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C7D8A53A2832A2C4004CA3F9 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */,
 				B81438DF2833ED4E004EA0D9 /* CALayer+.swift */,
+				C7962C112833DC820005B27C /* UIView+.swift */,
+				C7962C132833DD790005B27C /* Int+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -233,6 +259,7 @@
 				C73BFF57282F8DCD003ECFF8 /* HomeViewController.storyboard in Resources */,
 				C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */,
 				C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */,
+				C7962C0E28334C9C0005B27C /* SaleTableViewCell.xib in Resources */,
 				C784C67C282F8B9900AB0A2A /* NanumBarunGothicLight.otf in Resources */,
 				C784C66E282F8B5500AB0A2A /* Assets.xcassets in Resources */,
 				C784C66C282F8B5100AB0A2A /* Main.storyboard in Resources */,
@@ -249,12 +276,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */,
+				C7962C102833506A0005B27C /* SaleModel.swift in Sources */,
 				C784C669282F8B5100AB0A2A /* ViewController.swift in Sources */,
+				C7962C0D28334C9C0005B27C /* SaleTableViewCell.swift in Sources */,
 				B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */,
 				C784C665282F8B5100AB0A2A /* AppDelegate.swift in Sources */,
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
+				C7962C122833DC820005B27C /* UIView+.swift in Sources */,
+				C7962C142833DD790005B27C /* Int+.swift in Sources */,
 				C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */,
+				C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
