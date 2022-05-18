@@ -68,7 +68,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plusIcon" width="15.5" height="16"/>
+        <image name="plusIcon" width="16" height="16"/>
         <namedColor name="daangnOrange">
             <color red="0.93333333333333335" green="0.52156862745098043" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
