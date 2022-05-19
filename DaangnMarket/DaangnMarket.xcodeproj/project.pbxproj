@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141CCD5E28361FC800689297 /* ImagePickerViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141CCD5D28361FC800689297 /* ImagePickerViewController+.swift */; };
 		1434AC3828339AFE00B053E1 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1434AC3628339AFE00B053E1 /* ImageCollectionViewCell.xib */; };
 		1434AC3C2833A3B400B053E1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434AC3B2833A3B400B053E1 /* ImageCollectionViewCell.swift */; };
 		1434AC422833FBD900B053E1 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434AC412833FBD900B053E1 /* SampleData.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141CCD5D28361FC800689297 /* ImagePickerViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImagePickerViewController+.swift"; sourceTree = "<group>"; };
 		1434AC3628339AFE00B053E1 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		1434AC3B2833A3B400B053E1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		1434AC412833FBD900B053E1 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				B81438DF2833ED4E004EA0D9 /* CALayer+.swift */,
 				C7962C112833DC820005B27C /* UIView+.swift */,
 				C7962C132833DD790005B27C /* Int+.swift */,
+				141CCD5D28361FC800689297 /* ImagePickerViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
 				C7962C122833DC820005B27C /* UIView+.swift in Sources */,
+				141CCD5E28361FC800689297 /* ImagePickerViewController+.swift in Sources */,
 				C7962C142833DD790005B27C /* Int+.swift in Sources */,
 				C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */,
 				C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */,

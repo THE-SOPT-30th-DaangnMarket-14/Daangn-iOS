@@ -11,21 +11,25 @@ import UIKit
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var selectedImages: [ImageCollectionViewCell] = []
+    var selectedImages: [UIImage] = []
     var images = SampleData.sample
+    
+    let imageViewPicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
         configureCollectionView()
     }
     
     private func configureCollectionView(){
-        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
         
+        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.imageCollectionView.dataSource = self
         self.imageCollectionView.delegate = self
+        
+        self.imageViewPicker.delegate = self
     }
 }
 
@@ -56,10 +60,18 @@ extension ImagePickerViewController: UICollectionViewDataSource {
         guard let cell = self.imageCollectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else {return UICollectionViewCell()}
         
         cell.delegate = self
-        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
         cell.index = indexPath.row
+        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
         
         return cell
+    }
+}
+
+extension ImagePickerViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            openCamera()
+        }
     }
 }
 
@@ -81,7 +93,8 @@ extension ImagePickerViewController: ImageCollectionViewCellDelegate {
             
             images[cell.index].selectedNumber = nil
         } else {
-            selectedImages.append(cell)
+            guard let image = UIImage(named: images[cell.index].image) else {return}
+            selectedImages.append(image)
             images[cell.index].selectedNumber = selectedImages.count
         }
         imageCollectionView.reloadData()
