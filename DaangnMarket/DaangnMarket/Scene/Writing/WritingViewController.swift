@@ -94,8 +94,16 @@ extension WritingViewController {
     }
     
     @IBAction func ButtonAction(_ sender: UIButton){
-        print("카메라 버튼 클릭 ")
-        self.navigationController?.pushViewController(ImagePickerViewController(), animated: true)
+        guard let imagePickerVC = self.storyboard?.instantiateViewController(withIdentifier: "ImagePickerViewController") else { return }
+        
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+        
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(imagePickerVC, animated: true)
     }
 }
 
