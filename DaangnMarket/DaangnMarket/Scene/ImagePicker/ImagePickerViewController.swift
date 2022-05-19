@@ -17,13 +17,13 @@ class ImagePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
         configureCollectionView()
     }
     
     private func configureCollectionView(){
-        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
         
+        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.imageCollectionView.dataSource = self
         self.imageCollectionView.delegate = self
     }
@@ -56,8 +56,8 @@ extension ImagePickerViewController: UICollectionViewDataSource {
         guard let cell = self.imageCollectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else {return UICollectionViewCell()}
         
         cell.delegate = self
-        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
         cell.index = indexPath.row
+        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
         
         return cell
     }
