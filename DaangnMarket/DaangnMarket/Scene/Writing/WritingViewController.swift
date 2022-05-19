@@ -9,10 +9,31 @@ import UIKit
 
 class WritingViewController: UIViewController {
     
+    var imageNum = 0 {
+        didSet {
+            cameraButton.titleLabel?.text = "\(imageNum)/10"
+        }
+    }
+    
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var cameraButton: UIButton!
+    
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var priceTextView: UITextView!
     @IBOutlet weak var contentTextView: UITextView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +41,6 @@ class WritingViewController: UIViewController {
         setUp()
         setToolBar()
         configureUI()
-    }
-    
-    @objc func doneBtnClicked() {
-        self.view.endEditing(true)
     }
     
     func setUp() {
@@ -39,6 +56,11 @@ class WritingViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bounces = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cameraButton.titleLabel?.text = "\(imageNum)/10"
+        cameraButton.makeRounded(cornerRadius: 4)
+        cameraButton.layer.borderWidth = 1
+        cameraButton.layer.borderColor = UIColor.daangnGray01.cgColor
         
         [titleTextView, priceTextView, contentTextView].forEach {
             $0?.isScrollEnabled = false
@@ -65,12 +87,47 @@ class WritingViewController: UIViewController {
     }
 }
 
+// Action
+extension WritingViewController {
+    @objc func doneBtnClicked() {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func ButtonAction(_ sender: UIButton){
+        guard let imagePickerVC = self.storyboard?.instantiateViewController(withIdentifier: "ImagePickerViewController") else { return }
+        
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+        
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(imagePickerVC, animated: true)
+    }
+}
+
+// TextView Delegate
 extension WritingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .daangnGray03 {
             textView.textColor = .black
             textView.text = nil
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        guard let textViewText = textView.text else { return true }
+        let newLength = textViewText.count + text.count - range.length
+        
+        if textView.tag == 1 {
+            return newLength <= 15
+        } else if textView.tag == 2 {
+            return newLength <= 10
+        } else {
+            return newLength <= 1000
         }
     }
     
@@ -86,4 +143,32 @@ extension WritingViewController: UITextViewDelegate {
             }
         }
     }
+}
+
+// Keyboard Notification Center
+extension WritingViewController {
+    
+    @objc func keyboardWillShow(_ notification:NSNotification) {
+        
+        guard let userInfo = notification.userInfo,
+                let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+                    return
+            }
+        
+        let contentInset = UIEdgeInsets(
+                top: 0.0,
+                left: 0.0,
+                bottom: keyboardFrame.size.height + 40,
+                right: 0.0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+    }
+    
+    @objc func keyboardWillHide(_ notification:NSNotification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+    }
+
+  
 }
