@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 //MARK: - Camera Usage
 extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -27,4 +28,39 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true)
     }
     
+}
+
+//MARK: - Photo Library Usage
+extension ImagePickerViewController {
+    func requestAccessPhotoLibrary() {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            return
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization(for: .readWrite){ status in
+                switch status {
+                case .notDetermined:
+                    return
+                case .restricted:
+                    return
+                case .denied:
+                    return
+                case .authorized:
+                    return
+                case .limited:
+                    return
+                @unknown default:
+                    return
+                }
+            }
+        case .restricted:
+            return
+        case .denied:
+            return
+        case .limited:
+            return
+        @unknown default:
+            return
+        }
+    }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
@@ -20,6 +21,7 @@ class ImagePickerViewController: UIViewController {
         super.viewDidLoad()
         
         configureCollectionView()
+        requestAccessPhotoLibrary()
     }
     
     private func configureCollectionView(){
