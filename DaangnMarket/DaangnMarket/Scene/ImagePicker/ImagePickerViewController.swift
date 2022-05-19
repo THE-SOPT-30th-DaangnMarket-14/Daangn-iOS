@@ -11,8 +11,10 @@ import UIKit
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
-    var selectedImages: [ImageCollectionViewCell] = []
+    var selectedImages: [UIImage] = []
     var images = SampleData.sample
+    
+    let imageViewPicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ class ImagePickerViewController: UIViewController {
         imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.imageCollectionView.dataSource = self
         self.imageCollectionView.delegate = self
+        
+        self.imageViewPicker.delegate = self
     }
 }
 
@@ -63,6 +67,14 @@ extension ImagePickerViewController: UICollectionViewDataSource {
     }
 }
 
+extension ImagePickerViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            openCamera()
+        }
+    }
+}
+
 extension ImagePickerViewController: ImageCollectionViewCellDelegate {
     func didSelectCountButton(_ cell: ImageCollectionViewCell) {
         if images[cell.index].selectedNumber != nil {
@@ -81,7 +93,8 @@ extension ImagePickerViewController: ImageCollectionViewCellDelegate {
             
             images[cell.index].selectedNumber = nil
         } else {
-            selectedImages.append(cell)
+            guard let image = UIImage(named: images[cell.index].image) else {return}
+            selectedImages.append(image)
             images[cell.index].selectedNumber = selectedImages.count
         }
         imageCollectionView.reloadData()
