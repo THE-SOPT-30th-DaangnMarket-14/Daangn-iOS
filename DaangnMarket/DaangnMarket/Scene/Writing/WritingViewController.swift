@@ -94,7 +94,8 @@ extension WritingViewController {
     }
     
     @IBAction func ButtonAction(_ sender: UIButton){
-        guard let imagePickerVC = self.storyboard?.instantiateViewController(withIdentifier: "ImagePickerViewController") else { return }
+        let storyboard = UIStoryboard(name: "ImagePickerViewController", bundle: nil)
+        guard let imagePickerVC = storyboard.instantiateViewController(withIdentifier: "ImagePickerViewController") as? ImagePickerViewController else { return }
         
         let transition:CATransition = CATransition()
         transition.duration = 0.5
@@ -102,7 +103,7 @@ extension WritingViewController {
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromTop
         
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
         self.navigationController?.pushViewController(imagePickerVC, animated: true)
     }
 }
