@@ -9,15 +9,12 @@ import UIKit
 
 class WritingViewController: UIViewController {
     
-    var imageNum = 0 {
-        didSet {
-            cameraButton.titleLabel?.text = "\(imageNum)/10"
-        }
-    }
+    var selectedImage: [UIImage] = []
     
     @IBOutlet weak var scrollView: UIScrollView!
+
+    @IBOutlet weak var selectedImageCollectionView: UICollectionView!
     
-    @IBOutlet weak var cameraButton: UIButton!
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var priceTextView: UITextView!
@@ -45,6 +42,10 @@ class WritingViewController: UIViewController {
     
     func setUp() {
         
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.bounces = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         titleTextView.tag = 1
         priceTextView.tag = 2
         contentTextView.tag = 3
@@ -53,14 +54,19 @@ class WritingViewController: UIViewController {
     }
     
     func configureUI() {
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+
+        [SelectedImageCollectionViewCell.className,
+         CameraButtonCollectionViewCell.className].forEach {
+            selectedImageCollectionView.register(
+                UINib(nibName: $0, bundle: nil),
+                forCellWithReuseIdentifier: $0)
+        }
+        selectedImageCollectionView.delegate = self
+        selectedImageCollectionView.dataSource = self
         
-        cameraButton.titleLabel?.text = "\(imageNum)/10"
-        cameraButton.makeRounded(cornerRadius: 4)
-        cameraButton.layer.borderWidth = 1
-        cameraButton.layer.borderColor = UIColor.daangnGray01.cgColor
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        selectedImageCollectionView.collectionViewLayout = flowLayout
         
         [titleTextView, priceTextView, contentTextView].forEach {
             $0?.isScrollEnabled = false
@@ -170,6 +176,50 @@ extension WritingViewController {
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
     }
+}
 
-  
+extension WritingViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.row == 0 {
+            
+            guard let cameraButtonCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CameraButtonCollectionViewCell.className, for: indexPath) as? CameraButtonCollectionViewCell else { return UICollectionViewCell() }
+            
+            return cameraButtonCell
+        } else {
+            
+            guard let selectedImageCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SelectedImageCollectionViewCell.className, for: indexPath) as? SelectedImageCollectionViewCell else { return UICollectionViewCell() }
+            
+            indexPath.row != 1 ? selectedImageCell.firstImageLabel.isHidden = true : nil
+            
+            return selectedImageCell
+        }
+    }
+}
+
+extension WritingViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //return self.imageNum
+        return 5
+    }
+}
+
+extension WritingViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 75, height: 75)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+
 }
