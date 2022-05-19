@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CameraButtonDelegate {
+    func cameraButtonTapped()
+}
+
 class CameraButtonCollectionViewCell: UICollectionViewCell {
+    
+    var delegate: CameraButtonDelegate?
     
     var imageNum = 4 {
         didSet {
@@ -25,7 +31,13 @@ class CameraButtonCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setUp()
         configureUI()
+    }
+    
+    func setUp() {
+        
+        cameraButton.addTarget(self, action: #selector(cameraButtonClicked), for: .touchUpInside)
     }
     
     func configureUI() {
@@ -34,6 +46,11 @@ class CameraButtonCollectionViewCell: UICollectionViewCell {
         cameraButton.makeRounded(cornerRadius: 4)
         cameraButton.layer.borderWidth = 1
         cameraButton.layer.borderColor = UIColor.daangnGray01.cgColor
+    }
+    
+    // delegate 메서드명과 selector 메서드명
+    @objc func cameraButtonClicked() {
+        delegate?.cameraButtonTapped()
     }
 
 }

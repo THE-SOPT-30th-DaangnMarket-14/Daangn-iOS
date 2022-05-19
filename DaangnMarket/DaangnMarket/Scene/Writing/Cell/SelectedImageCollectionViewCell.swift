@@ -9,6 +9,7 @@ import UIKit
 
 class SelectedImageCollectionViewCell: UICollectionViewCell {
     
+    var deleteButtonAction : (() -> ())?
     
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var selectedImageView: UIImageView!
@@ -19,7 +20,13 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        setUp()
         configureUI()
+    }
+    
+    func setUp() {
+        
+        deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
     
     func configureUI() {
@@ -27,5 +34,8 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
         baseView.makeRounded(cornerRadius: 4)
         firstImageLabel.text = "대표 사진"
     }
-
+    
+    @objc func deleteButtonClicked() {
+        deleteButtonAction?()
+    }
 }
