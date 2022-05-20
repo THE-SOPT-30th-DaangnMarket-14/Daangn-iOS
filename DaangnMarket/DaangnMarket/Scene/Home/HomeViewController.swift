@@ -57,7 +57,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tapAddBtn(_ sender: Any) {
+        guard let writingViewController = UIStoryboard.init(name: "WritingViewController", bundle: nil).instantiateViewController(withIdentifier: "WritingViewController") as? WritingViewController else { return }
+        writingViewController.modalPresentationStyle = .fullScreen
         
+        self.present(writingViewController, animated: true)
     }
 }
 

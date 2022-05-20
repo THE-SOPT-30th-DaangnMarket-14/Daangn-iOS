@@ -11,6 +11,11 @@ import UIKit
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    var selectedImages: [UIImage] = []
+    var images = SampleData.sample
+    
+    let imageViewPicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,10 +23,13 @@ class ImagePickerViewController: UIViewController {
     }
     
     private func configureCollectionView(){
-        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
         
+        imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.imageCollectionView.dataSource = self
         self.imageCollectionView.delegate = self
+        
+        self.imageViewPicker.delegate = self
     }
 }
 
@@ -33,11 +41,11 @@ extension ImagePickerViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: cellSize, height: cellSize)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 3
     }
@@ -51,10 +59,45 @@ extension ImagePickerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.imageCollectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else {return UICollectionViewCell()}
         
-        let imageName = indexPath.row == 0 ? "ios_list_camera" : SampleData.sample[indexPath.row]
-        cell.configureCell(UIImage(named: imageName)!) //TODO: - 사진을 받아올 때 수정할 예정
+        cell.delegate = self
+        cell.index = indexPath.row
+        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
         
         return cell
+    }
+}
+
+extension ImagePickerViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            openCamera()
+        }
+    }
+}
+
+extension ImagePickerViewController: ImageCollectionViewCellDelegate {
+    func didSelectCountButton(_ cell: ImageCollectionViewCell) {
+        if images[cell.index].selectedNumber != nil {
+            guard let selectedNumber = images[cell.index].selectedNumber else {return}
+            selectedImages.remove(at: selectedNumber - 1)
+            
+            if selectedNumber <= selectedImages.count {
+                images = images.map{
+                    guard var number = $0.selectedNumber else {return SampleData(image: $0.image, selectedNumber: nil)}
+                    if number > selectedNumber {
+                        number -= 1
+                    }
+                    return SampleData(image: $0.image, selectedNumber: number)
+                }
+            }
+            
+            images[cell.index].selectedNumber = nil
+        } else {
+            guard let image = UIImage(named: images[cell.index].image) else {return}
+            selectedImages.append(image)
+            images[cell.index].selectedNumber = selectedImages.count
+        }
+        imageCollectionView.reloadData()
     }
 }
 

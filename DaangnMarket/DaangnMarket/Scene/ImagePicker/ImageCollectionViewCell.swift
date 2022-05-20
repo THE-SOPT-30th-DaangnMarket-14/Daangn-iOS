@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ImageCollectionViewCellDelegate: AnyObject {
+    func didSelectCountButton(_ cell: ImageCollectionViewCell)
+}
+
 class ImageCollectionViewCell: UICollectionViewCell {
     //MARK: - Outlet
     @IBOutlet weak var imageView: UIImageView!
@@ -17,17 +21,23 @@ class ImageCollectionViewCell: UICollectionViewCell {
         UINib(nibName: "ImageCollectionViewCell", bundle: nil)
     }
     
+    var isSelectedImage: Bool = false {
+        didSet{
+            imageView.layer.borderColor = isSelectedImage ? UIColor.daangnOrange.cgColor : UIColor.clear.cgColor
+        }
+    }
+    var isSelectedStatus: Bool = false
+    var index: Int = 0
+    
+    weak var delegate: ImageCollectionViewCellDelegate?
+    
     //MARK: - View
-    var countView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        view.backgroundColor = .clear
-        view.layer.cornerRadius = view.frame.height / 2
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.daangnWhite.cgColor
-        
-        view.layer.shadowColor = UIColor.daangnBlack.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.5
+    var countButton: UIButton = {
+        let view = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        view.setBackgroundImage(UIImage(named: "ic_count_circle_unselect_24"), for: .normal)
+        view.setBackgroundImage(UIImage(named: "ic_count_circle_non_24"), for: .selected)
+        view.setTitleColor(UIColor.daangnWhite, for: .selected)
+        view.titleLabel?.font = UIFont(name: "NanumBarunGothicBold", size: 14)
         
         return view
     }()
@@ -40,16 +50,33 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configure
     private func configureView(){
-        imageView.addSubview(countView)
+        countButton.addTarget(self, action: #selector(didTouchDownCountButton), for: .touchUpInside)
+        contentView.addSubview(countButton)
         
-        countView.translatesAutoresizingMaskIntoConstraints = false
-        countView.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8).isActive = true
-        countView.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -8).isActive = true
-        countView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        countView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        countButton.translatesAutoresizingMaskIntoConstraints = false
+        countButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 6).isActive = true
+        countButton.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -6).isActive = true
+        countButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        countButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
-    func configureCell(_ image: UIImage){
-        self.imageView.image = image
+    func configureCell(_ data: SampleData){
+        self.imageView.image = UIImage(named: data.image)
+        countButton.isHidden = index == 0
+        
+        if data.selectedNumber != nil {
+            guard let selectedNumber = data.selectedNumber else {return}
+            countButton.setTitle(String(selectedNumber), for: .selected)
+        }
+        countButton.isSelected = data.selectedNumber != nil
+        isSelectedImage = data.selectedNumber != nil
+    }
+    
+    //MARK: - @objc
+    @objc private func didTouchDownCountButton(){
+        delegate?.didSelectCountButton(self)
     }
 }
