@@ -9,15 +9,14 @@ import UIKit
 
 class WritingViewController: UIViewController {
     
-    var imageNum = 0 {
-        didSet {
-            cameraButton.titleLabel?.text = "\(imageNum)/10"
-        }
-    }
+    var selectedImage: [UIImage] = []
+    // 배열 직접 받아오게 되면 num -> [uiimage]로 수정 예정
+    var selectedImageNum = 5
     
     @IBOutlet weak var scrollView: UIScrollView!
+
+    @IBOutlet weak var selectedImageCollectionView: UICollectionView!
     
-    @IBOutlet weak var cameraButton: UIButton!
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var priceTextView: UITextView!
@@ -45,6 +44,10 @@ class WritingViewController: UIViewController {
     
     func setUp() {
         
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.bounces = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         titleTextView.tag = 1
         priceTextView.tag = 2
         contentTextView.tag = 3
@@ -53,14 +56,19 @@ class WritingViewController: UIViewController {
     }
     
     func configureUI() {
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+
+        [SelectedImageCollectionViewCell.className,
+         CameraButtonCollectionViewCell.className].forEach {
+            selectedImageCollectionView.register(
+                UINib(nibName: $0, bundle: nil),
+                forCellWithReuseIdentifier: $0)
+        }
+        selectedImageCollectionView.delegate = self
+        selectedImageCollectionView.dataSource = self
         
-        cameraButton.titleLabel?.text = "\(imageNum)/10"
-        cameraButton.makeRounded(cornerRadius: 4)
-        cameraButton.layer.borderWidth = 1
-        cameraButton.layer.borderColor = UIColor.daangnGray01.cgColor
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        selectedImageCollectionView.collectionViewLayout = flowLayout
         
         [titleTextView, priceTextView, contentTextView].forEach {
             $0?.isScrollEnabled = false
@@ -79,7 +87,7 @@ class WritingViewController: UIViewController {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .done, target: self, action: #selector(doneBtnClicked))
         doneButton.tintColor = .black
-        
+
         keyboardToolBar.items = [flexibleSpace, doneButton]
         keyboardToolBar.sizeToFit()
         
@@ -87,27 +95,25 @@ class WritingViewController: UIViewController {
     }
 }
 
-// Action
-extension WritingViewController {
+// MARK: - Action
+extension WritingViewController: CameraButtonDelegate {
+    
+    func cameraButtonTapped() {
+
+        let storyboard = UIStoryboard(name: "ImagePickerViewController", bundle: nil)
+        guard let imagePickerVC = storyboard.instantiateViewController(withIdentifier: "ImagePickerViewController") as? ImagePickerViewController else { return }
+        
+        let imagePickerNVC = UINavigationController(rootViewController: imagePickerVC)
+        imagePickerNVC.modalPresentationStyle = .fullScreen
+        navigationController?.present(imagePickerNVC, animated: true, completion: nil)
+    }
+    
     @objc func doneBtnClicked() {
         self.view.endEditing(true)
     }
-    
-    @IBAction func ButtonAction(_ sender: UIButton){
-        guard let imagePickerVC = self.storyboard?.instantiateViewController(withIdentifier: "ImagePickerViewController") else { return }
-        
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromTop
-        
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(imagePickerVC, animated: true)
-    }
 }
 
-// TextView Delegate
+// MARK: - TextView Delegate
 extension WritingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -145,7 +151,7 @@ extension WritingViewController: UITextViewDelegate {
     }
 }
 
-// Keyboard Notification Center
+// MARK: - Keyboard Notification Center
 extension WritingViewController {
     
     @objc func keyboardWillShow(_ notification:NSNotification) {
@@ -169,6 +175,75 @@ extension WritingViewController {
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
     }
+}
 
-  
+// MARK: - CollectionView Delegate & DataSource & FlowLayout
+extension WritingViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.section == 0 {
+            
+            guard let cameraButtonCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CameraButtonCollectionViewCell.className, for: indexPath) as? CameraButtonCollectionViewCell else { return UICollectionViewCell() }
+            
+            cameraButtonCell.delegate = self
+            
+            return cameraButtonCell
+        } else {
+            
+            guard let selectedImageCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SelectedImageCollectionViewCell.className, for: indexPath) as? SelectedImageCollectionViewCell else { return UICollectionViewCell() }
+            
+            DispatchQueue.main.async {
+                indexPath.row == 0 ? (selectedImageCell.firstImageLabel.isHidden = false) : (selectedImageCell.firstImageLabel.isHidden = true)
+            }
+            
+            selectedImageCell.deleteButtonAction = { [unowned self] in
+                
+                self.selectedImageCollectionView.performBatchUpdates {
+
+                    self.selectedImageCollectionView.deleteItems(at: [indexPath])
+                    selectedImageNum -= 1
+                } completion: { [unowned self] _ in
+                    self.selectedImageCollectionView.reloadData()
+                }
+            }
+            
+            return selectedImageCell
+        }
+    }
+}
+
+extension WritingViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+        return section == 0 ? 1 : selectedImageNum
+    }
+}
+
+extension WritingViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 75, height: 75)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        if section == 0 {
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 4)
+        } else {
+            return UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 16)
+        }
+    }
+
 }
