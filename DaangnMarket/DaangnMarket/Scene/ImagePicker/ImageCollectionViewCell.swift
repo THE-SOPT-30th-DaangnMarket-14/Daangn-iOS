@@ -63,7 +63,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
-    func configureCell(_ data: SampleData){
+    func configureCell(_ data: ImageData){
         self.imageView.image = data.image
         countButton.isHidden = index == 0
         

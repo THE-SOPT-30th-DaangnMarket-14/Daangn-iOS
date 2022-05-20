@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct SampleData {
+struct ImageData {
     let image: UIImage
     var selectedNumber: Int?
 }

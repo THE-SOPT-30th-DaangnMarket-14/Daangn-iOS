@@ -81,7 +81,7 @@ extension ImagePickerViewController {
                                                   options: requestOption)
             { image, resultInfo in
                 if let image = image {
-                    self.images.append(SampleData(image: image))
+                    self.images.append(ImageData(image: image))
                 }
                 
                 if index == assets.count-1 {
