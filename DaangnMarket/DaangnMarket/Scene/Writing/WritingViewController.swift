@@ -105,7 +105,7 @@ extension WritingViewController: CameraButtonDelegate {
         
         let imagePickerNVC = UINavigationController(rootViewController: imagePickerVC)
         imagePickerNVC.modalPresentationStyle = .fullScreen
-        navigationController?.present(imagePickerNVC, animated: true, completion: nil)
+        self.present(imagePickerNVC, animated: true, completion: nil)
     }
     
     @objc func doneBtnClicked() {
