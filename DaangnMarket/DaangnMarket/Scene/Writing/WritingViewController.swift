@@ -108,18 +108,6 @@ extension WritingViewController: CameraButtonDelegate {
         navigationController?.present(imagePickerNVC, animated: true, completion: nil)
     }
     
-//    @objc func deleteButtonTapped(sender: UIButton) {
-//        self.selectedImageCollectionView.performBatchUpdates {
-//
-//            self.selectedImageCollectionView.deleteItems(at: [
-//                IndexPath(row: sender.tag, section: 1)])
-//            selectedImageNum -= 1
-//        } completion: { [unowned self] _ in
-//            self.selectedImageCollectionView.reloadData()
-//            print(sender.tag)
-//        }
-//    }
-    
     @objc func doneBtnClicked() {
         self.view.endEditing(true)
     }

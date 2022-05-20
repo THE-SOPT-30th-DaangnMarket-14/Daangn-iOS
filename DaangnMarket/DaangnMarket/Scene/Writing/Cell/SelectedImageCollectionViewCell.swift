@@ -25,7 +25,7 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
     }
     
     func setUp() {
-        
+     
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
     
