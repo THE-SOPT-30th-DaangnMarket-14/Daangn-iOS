@@ -64,7 +64,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(_ data: SampleData){
-        self.imageView.image = UIImage(named: data.image)
+        self.imageView.image = data.image
         countButton.isHidden = index == 0
         
         if data.selectedNumber != nil {

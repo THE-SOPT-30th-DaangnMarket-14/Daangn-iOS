@@ -13,7 +13,7 @@ class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
     var selectedImages: [UIImage] = []
-    var images = SampleData.sample
+    var images: [SampleData] = []
     
     let imageViewPicker = UIImagePickerController()
     
@@ -25,7 +25,9 @@ class ImagePickerViewController: UIViewController {
     }
     
     private func configureCollectionView(){
-        images.insert(SampleData(image: "ios_list_camera", selectedNumber: nil),at: 0)
+        if let cameraImage = UIImage(named: "ios_list_camera") {
+            images.insert(SampleData(image: cameraImage, selectedNumber: nil),at: 0)
+        }
         
         imageCollectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         self.imageCollectionView.dataSource = self
@@ -55,7 +57,8 @@ extension ImagePickerViewController: UICollectionViewDelegateFlowLayout {
 
 extension ImagePickerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SampleData.sample.count
+        let numberOfItems = images.isEmpty ? 0 : images.count
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -95,7 +98,7 @@ extension ImagePickerViewController: ImageCollectionViewCellDelegate {
             
             images[cell.index].selectedNumber = nil
         } else {
-            guard let image = UIImage(named: images[cell.index].image) else {return}
+            let image = images[cell.index].image
             selectedImages.append(image)
             images[cell.index].selectedNumber = selectedImages.count
         }

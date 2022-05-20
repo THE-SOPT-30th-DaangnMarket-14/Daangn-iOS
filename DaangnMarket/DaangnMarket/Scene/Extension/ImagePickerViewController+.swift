@@ -33,21 +33,22 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
 //MARK: - Photo Library Usage
 extension ImagePickerViewController {
     func requestAccessPhotoLibrary() {
+        //TODO: - 권한에 따른 추가 처리 필요
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
-            return
+            fetchPhotos()
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization(for: .readWrite){ status in
                 switch status {
-                case .notDetermined:
-                    return
                 case .restricted:
                     return
                 case .denied:
                     return
                 case .authorized:
-                    return
+                    self.fetchPhotos()
                 case .limited:
+                    return
+                case .notDetermined:
                     return
                 @unknown default:
                     return
@@ -62,5 +63,34 @@ extension ImagePickerViewController {
         @unknown default:
             return
         }
+    }
+    
+    private func fetchPhotos(){
+        let sortDesriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        let fetchOption = PHFetchOptions()
+        fetchOption.sortDescriptors = [sortDesriptor]
+        let assets = PHAsset.fetchAssets(with: .image, options: fetchOption)
+        assets.enumerateObjects{ asset, index, stop in
+            let size = CGSize(width: 123, height: 123)
+            let imageManager = PHImageManager.default()
+            let requestOption = PHImageRequestOptions()
+            requestOption.isSynchronous = true
+            imageManager.requestImage(for: asset,
+                                                  targetSize: size,
+                                                  contentMode: .aspectFit,
+                                                  options: requestOption)
+            { image, resultInfo in
+                if let image = image {
+                    self.images.append(SampleData(image: image))
+                }
+                
+                if index == assets.count-1 {
+                    DispatchQueue.main.async {
+                        self.imageCollectionView.reloadData()
+                    }
+                }
+            }
+        }
+        
     }
 }
