@@ -20,17 +20,17 @@ final class DaangnNaviBar: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        setUp()
     }
     
     class func createMyClassView() -> DaangnNaviBar {
         let myClassNib = UINib(nibName: "DaangnNavigationBar", bundle: nil)
-        let view = myClassNib.instantiate(withOwner: nil, options: nil).first as! DaangnNaviBar
+        let view = myClassNib.instantiate(withOwner: self, options: nil).first as! DaangnNaviBar
         
         return view
     }
     
-    private func setUp() {
+    func setUp() {
+        
         dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
         doneButton.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
     }

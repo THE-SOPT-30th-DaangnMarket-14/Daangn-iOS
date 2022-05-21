@@ -16,7 +16,7 @@ class WritingViewController: UIViewController {
     
     // MARK: - IBOutlet
     
-    @IBOutlet weak var navigationBar: DaangnNaviBar!
+    @IBOutlet weak var navigationBar: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectedImageCollectionView: UICollectionView!
     @IBOutlet weak var titleTextView: UITextView!
@@ -99,18 +99,21 @@ class WritingViewController: UIViewController {
     }
     
     func setNavigationBar() {
-       
+
         self.navigationController?.navigationBar.isHidden = true
         let daangnNaviBar = DaangnNaviBar.createMyClassView()
         self.navigationBar.addSubview(daangnNaviBar)
         
-        self.navigationBar.dismissButtonAction = {
+        daangnNaviBar.dismissButtonAction = {
             self.dismiss(animated: true, completion: nil)
         }
         
-        self.navigationBar.doneButtonAction = {
+        daangnNaviBar.doneButtonAction = {
             self.dismiss(animated: true, completion: nil)
         }
+        
+        daangnNaviBar.setUp()
+        
     }
 }
 

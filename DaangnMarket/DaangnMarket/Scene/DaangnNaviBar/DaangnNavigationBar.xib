@@ -13,16 +13,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DaangnNaviBar" customModule="DaangnMarket" customModuleProvider="target">
-            <connections>
-                <outlet property="dismissButton" destination="m0V-Ui-LyH" id="9c4-bt-L4d"/>
-                <outlet property="doneButton" destination="G3G-cq-17M" id="GWm-xL-tqM"/>
-                <outlet property="dropdownImageView" destination="fkE-Rf-gEK" id="3dr-ai-PfP"/>
-                <outlet property="naviBarTitleLabel" destination="ugb-xv-eD1" id="GFK-j9-dwq"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DaangnNaviBar" customModule="DaangnMarket" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -72,6 +65,12 @@
                 <constraint firstItem="m0V-Ui-LyH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uxc-nM-4Qb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dismissButton" destination="m0V-Ui-LyH" id="zg0-fY-pyf"/>
+                <outlet property="doneButton" destination="G3G-cq-17M" id="Gv7-4e-VAK"/>
+                <outlet property="dropdownImageView" destination="fkE-Rf-gEK" id="aTM-Db-Zzf"/>
+                <outlet property="naviBarTitleLabel" destination="ugb-xv-eD1" id="FUh-VL-cnO"/>
+            </connections>
             <point key="canvasLocation" x="169.56521739130437" y="155.35714285714286"/>
         </view>
     </objects>
