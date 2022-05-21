@@ -104,6 +104,8 @@ class WritingViewController: UIViewController {
         let daangnNaviBar = DaangnNaviBar.createMyClassView()
         self.navigationBar.addSubview(daangnNaviBar)
         
+        daangnNaviBar.dropdownImageView.isHidden = true
+        
         daangnNaviBar.dismissButtonAction = {
             self.dismiss(animated: true, completion: nil)
         }
