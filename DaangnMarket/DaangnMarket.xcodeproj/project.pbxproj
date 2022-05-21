@@ -13,6 +13,8 @@
 		1434AC422833FBD900B053E1 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434AC412833FBD900B053E1 /* SampleData.swift */; };
 		B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */; };
 		B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DF2833ED4E004EA0D9 /* CALayer+.swift */; };
+		B83565572838A1F30052DD91 /* DaangnNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */; };
+		B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83565582838A95D0052DD91 /* DaangnNaviBar.swift */; };
 		B85E9D032835E77E00B81D36 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E9D012835E77E00B81D36 /* SelectedImageCollectionViewCell.swift */; };
 		B85E9D042835E77E00B81D36 /* SelectedImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85E9D022835E77E00B81D36 /* SelectedImageCollectionViewCell.xib */; };
 		B85E9D082836527300B81D36 /* CameraButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E9D062836527300B81D36 /* CameraButtonCollectionViewCell.swift */; };
@@ -53,6 +55,8 @@
 		1434AC412833FBD900B053E1 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		B81438DF2833ED4E004EA0D9 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaangnNavigationBar.xib; sourceTree = "<group>"; };
+		B83565582838A95D0052DD91 /* DaangnNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaangnNaviBar.swift; sourceTree = "<group>"; };
 		B85E9D012835E77E00B81D36 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B85E9D022835E77E00B81D36 /* SelectedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		B85E9D062836527300B81D36 /* CameraButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +113,15 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		B83565552838A1CB0052DD91 /* DaangnNaviBar */ = {
+			isa = PBXGroup;
+			children = (
+				B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */,
+				B83565582838A95D0052DD91 /* DaangnNaviBar.swift */,
+			);
+			path = DaangnNaviBar;
+			sourceTree = "<group>";
+		};
 		B85E9D052835E78500B81D36 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +136,7 @@
 		C73BFF50282F8CFF003ECFF8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				B83565552838A1CB0052DD91 /* DaangnNaviBar */,
 				C7962C212835561E0005B27C /* DaangnTabBar */,
 				C7D8A53A2832A2C4004CA3F9 /* Extension */,
 				C73BFF53282F8D1B003ECFF8 /* ImagePicker */,
@@ -313,6 +327,7 @@
 				1434AC3828339AFE00B053E1 /* ImageCollectionViewCell.xib in Resources */,
 				C784C671282F8B5500AB0A2A /* LaunchScreen.storyboard in Resources */,
 				C73BFF57282F8DCD003ECFF8 /* HomeViewController.storyboard in Resources */,
+				B83565572838A1F30052DD91 /* DaangnNavigationBar.xib in Resources */,
 				C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */,
 				C784C67E282F8B9900AB0A2A /* NanumBarunGothicUltraLight.otf in Resources */,
 				C7962C0E28334C9C0005B27C /* SaleTableViewCell.xib in Resources */,
@@ -334,6 +349,7 @@
 			files = (
 				B85E9D082836527300B81D36 /* CameraButtonCollectionViewCell.swift in Sources */,
 				1434AC3C2833A3B400B053E1 /* ImageCollectionViewCell.swift in Sources */,
+				B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */,
 				1434AC422833FBD900B053E1 /* SampleData.swift in Sources */,
 				B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */,
 				B85E9D032835E77E00B81D36 /* SelectedImageCollectionViewCell.swift in Sources */,

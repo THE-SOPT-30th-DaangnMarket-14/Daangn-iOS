@@ -9,19 +9,21 @@ import UIKit
 
 class WritingViewController: UIViewController {
     
+    // MARK: - 변수
     var selectedImage: [UIImage] = []
     // 배열 직접 받아오게 되면 num -> [uiimage]로 수정 예정
     var selectedImageNum = 5
     
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var navigationBar: DaangnNaviBar!
     @IBOutlet weak var scrollView: UIScrollView!
-
     @IBOutlet weak var selectedImageCollectionView: UICollectionView!
-    
-    
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var priceTextView: UITextView!
     @IBOutlet weak var contentTextView: UITextView!
-    
+  
+    // MARK: - 뷰 생명주기
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -40,8 +42,10 @@ class WritingViewController: UIViewController {
         setUp()
         setToolBar()
         configureUI()
+        setNavigationBar()
     }
     
+    // MARK: - setup 메서드
     func setUp() {
         
         scrollView.showsVerticalScrollIndicator = false
@@ -92,6 +96,21 @@ class WritingViewController: UIViewController {
         keyboardToolBar.sizeToFit()
         
         [titleTextView, priceTextView, contentTextView].forEach { $0?.inputAccessoryView = keyboardToolBar }
+    }
+    
+    func setNavigationBar() {
+       
+        self.navigationController?.navigationBar.isHidden = true
+        let daangnNaviBar = DaangnNaviBar.createMyClassView()
+        self.navigationBar.addSubview(daangnNaviBar)
+        
+        self.navigationBar.dismissButtonAction = {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        self.navigationBar.doneButtonAction = {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
