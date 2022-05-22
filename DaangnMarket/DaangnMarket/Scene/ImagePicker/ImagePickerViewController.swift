@@ -11,6 +11,7 @@ import Photos
 
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var navigationBarView: UIView!
     
     var selectedImages: [UIImage] = []
     var images: [ImageData] = []
@@ -22,6 +23,7 @@ class ImagePickerViewController: UIViewController {
         
         configureCollectionView()
         requestAccessPhotoLibrary()
+        configureNavigationBarView()
     }
     
     private func configureCollectionView(){
@@ -34,6 +36,17 @@ class ImagePickerViewController: UIViewController {
         self.imageCollectionView.delegate = self
         
         self.imageViewPicker.delegate = self
+    }
+    
+    private func configureNavigationBarView(){
+        self.navigationController?.isNavigationBarHidden = true
+        
+        let daangnNaviBar = DaangnNaviBar.createMyClassView()
+        daangnNaviBar.naviBarTitleLabel.text = "최근 항목"
+        daangnNaviBar.doneButton.setTitle("확인", for: .normal)
+        daangnNaviBar.doneButton.isEnabled = false
+        
+        navigationBarView.addSubview(daangnNaviBar)
     }
 }
 
