@@ -13,7 +13,22 @@ class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var navigationBarView: UIView!
     
-    var selectedImages: [UIImage] = []
+    var selectedImages: [UIImage] = []{
+        didSet{
+            guard let daangnNaviBar = navigationBarView.subviews.first as? DaangnNaviBar else {return}
+            
+            if selectedImages.count > 0 {
+                let mutableAttributedString = NSMutableAttributedString()
+                    .setColor(string: "\(selectedImages.count)", to: .daangnOrange)
+                    .setColor(string: " 확인", to: .daangnBlack)
+                daangnNaviBar.doneButton.setAttributedTitle(mutableAttributedString, for: .normal)
+                
+                daangnNaviBar.doneButton.isEnabled = true
+                return
+            }
+            daangnNaviBar.doneButton.isEnabled = false
+        }
+    }
     var images: [ImageData] = []
     
     let imageViewPicker = UIImagePickerController()
@@ -43,7 +58,7 @@ class ImagePickerViewController: UIViewController {
         
         let daangnNaviBar = DaangnNaviBar.createMyClassView()
         daangnNaviBar.naviBarTitleLabel.text = "최근 항목"
-        daangnNaviBar.doneButton.setTitle("확인", for: .normal)
+        daangnNaviBar.doneButton.setAttributedTitle(NSAttributedString(string: "확인"), for: .disabled)
         daangnNaviBar.doneButton.isEnabled = false
         
         navigationBarView.addSubview(daangnNaviBar)
@@ -113,6 +128,7 @@ extension ImagePickerViewController: ImageCollectionViewCellDelegate {
         } else {
             let image = images[cell.index].image
             selectedImages.append(image)
+            print("\(222)")
             images[cell.index].selectedNumber = selectedImages.count
         }
         imageCollectionView.reloadData()
