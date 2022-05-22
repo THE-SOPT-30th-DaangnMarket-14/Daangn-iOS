@@ -94,7 +94,7 @@ extension ImagePickerViewController: UICollectionViewDataSource {
         
         cell.delegate = self
         cell.index = indexPath.row
-        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
+        cell.configureCell(images[indexPath.row])
         
         return cell
     }
@@ -128,7 +128,6 @@ extension ImagePickerViewController: ImageCollectionViewCellDelegate {
         } else {
             let image = images[cell.index].image
             selectedImages.append(image)
-            print("\(222)")
             images[cell.index].selectedNumber = selectedImages.count
         }
         imageCollectionView.reloadData()
