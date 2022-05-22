@@ -118,19 +118,29 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="Jos-hd-r4g"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="45y-Yt-Q4G"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnc-FO-Ncu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="C4q-3h-ULp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="97N-Sh-VUK" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="5OP-nz-sLt"/>
-                            <constraint firstItem="97N-Sh-VUK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="G4D-6f-P2G"/>
+                            <constraint firstItem="bnc-FO-Ncu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JBd-8S-6Ed"/>
                             <constraint firstItem="97N-Sh-VUK" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Rdz-wP-tKn"/>
+                            <constraint firstItem="97N-Sh-VUK" firstAttribute="top" secondItem="bnc-FO-Ncu" secondAttribute="bottom" id="oNG-Fr-L4r"/>
                             <constraint firstItem="97N-Sh-VUK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="v9p-i6-iq5"/>
+                            <constraint firstItem="bnc-FO-Ncu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="wXe-zZ-TiR"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bnc-FO-Ncu" secondAttribute="trailing" id="wfD-1r-iqQ"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="contentTextView" destination="DgY-LK-wFN" id="Qix-mf-0g3"/>
+                        <outlet property="navigationBar" destination="bnc-FO-Ncu" id="2Zf-SQ-JWR"/>
                         <outlet property="priceTextView" destination="MTX-7W-KC7" id="iwz-AL-2eh"/>
                         <outlet property="scrollView" destination="97N-Sh-VUK" id="LJI-2b-yG9"/>
                         <outlet property="selectedImageCollectionView" destination="PQ7-Ku-vWL" id="Mrd-6m-2IQ"/>
