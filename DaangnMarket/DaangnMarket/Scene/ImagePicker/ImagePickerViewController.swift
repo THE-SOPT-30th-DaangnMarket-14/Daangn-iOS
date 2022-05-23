@@ -11,8 +11,24 @@ import Photos
 
 class ImagePickerViewController: UIViewController {
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var navigationBarView: UIView!
     
-    var selectedImages: [UIImage] = []
+    var selectedImages: [UIImage] = []{
+        didSet{
+            guard let daangnNaviBar = navigationBarView.subviews.first as? DaangnNaviBar else {return}
+            
+            if selectedImages.count > 0 {
+                let mutableAttributedString = NSMutableAttributedString()
+                    .setColor(string: "\(selectedImages.count)", to: .daangnOrange)
+                    .setColor(string: " 확인", to: .daangnBlack)
+                daangnNaviBar.doneButton.setAttributedTitle(mutableAttributedString, for: .normal)
+                
+                daangnNaviBar.doneButton.isEnabled = true
+                return
+            }
+            daangnNaviBar.doneButton.isEnabled = false
+        }
+    }
     var images: [ImageData] = []
     
     let imageViewPicker = UIImagePickerController()
@@ -22,6 +38,7 @@ class ImagePickerViewController: UIViewController {
         
         configureCollectionView()
         requestAccessPhotoLibrary()
+        configureNavigationBarView()
     }
     
     private func configureCollectionView(){
@@ -34,6 +51,17 @@ class ImagePickerViewController: UIViewController {
         self.imageCollectionView.delegate = self
         
         self.imageViewPicker.delegate = self
+    }
+    
+    private func configureNavigationBarView(){
+        self.navigationController?.isNavigationBarHidden = true
+        
+        let daangnNaviBar = DaangnNaviBar.createMyClassView()
+        daangnNaviBar.naviBarTitleLabel.text = "최근 항목"
+        daangnNaviBar.doneButton.setAttributedTitle(NSAttributedString(string: "확인"), for: .disabled)
+        daangnNaviBar.doneButton.isEnabled = false
+        
+        navigationBarView.addSubview(daangnNaviBar)
     }
 }
 
@@ -66,7 +94,7 @@ extension ImagePickerViewController: UICollectionViewDataSource {
         
         cell.delegate = self
         cell.index = indexPath.row
-        cell.configureCell(images[indexPath.row]) //TODO: - 사진을 받아올 때 수정할 예정
+        cell.configureCell(images[indexPath.row])
         
         return cell
     }
