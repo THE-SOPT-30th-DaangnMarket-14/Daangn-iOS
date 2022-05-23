@@ -64,6 +64,12 @@ class ImagePickerViewController: UIViewController {
         daangnNaviBar.dismissButtonAction = {
             self.dismiss(animated: true)
         }
+        daangnNaviBar.doneButtonAction = {
+            guard let writingViewController = self.presentingViewController as? WritingViewController else {return}
+            writingViewController.selectedImage = self.selectedImages
+            
+            self.dismiss(animated: true)
+        }
         daangnNaviBar.setUp()
         
         navigationBarView.addSubview(daangnNaviBar)
