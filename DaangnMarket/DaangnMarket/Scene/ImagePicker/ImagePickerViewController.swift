@@ -61,6 +61,11 @@ class ImagePickerViewController: UIViewController {
         daangnNaviBar.doneButton.setAttributedTitle(NSAttributedString(string: "확인"), for: .disabled)
         daangnNaviBar.doneButton.isEnabled = false
         
+        daangnNaviBar.dismissButtonAction = {
+            self.dismiss(animated: true)
+        }
+        daangnNaviBar.setUp()
+        
         navigationBarView.addSubview(daangnNaviBar)
     }
 }
