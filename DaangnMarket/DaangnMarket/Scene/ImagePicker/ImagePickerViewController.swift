@@ -39,6 +39,7 @@ class ImagePickerViewController: UIViewController {
         configureCollectionView()
         requestAccessPhotoLibrary()
         configureNavigationBarView()
+        addNotificationObserver()
     }
     
     private func configureCollectionView(){
@@ -73,6 +74,24 @@ class ImagePickerViewController: UIViewController {
         daangnNaviBar.setUp()
         
         navigationBarView.addSubview(daangnNaviBar)
+    }
+    
+    private func addNotificationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didTakeAPicture),
+                                               name: Notification.Name("DidTakeAPictureNotification"),
+                                               object: nil)
+    }
+    
+    //MARK: - @objc Method
+    @objc private func didTakeAPicture(){
+        guard let daangnNaviBar = navigationBarView.subviews.first as? DaangnNaviBar else {return}
+        daangnNaviBar.doneButton.sendActions(for: .touchUpInside)
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

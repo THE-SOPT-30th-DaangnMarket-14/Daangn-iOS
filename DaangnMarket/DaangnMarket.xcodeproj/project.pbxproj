@@ -350,7 +350,7 @@
 				B85E9D082836527300B81D36 /* CameraButtonCollectionViewCell.swift in Sources */,
 				1434AC3C2833A3B400B053E1 /* ImageCollectionViewCell.swift in Sources */,
 				B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */,
-				1434AC422833FBD900B053E1 /* SampleData.swift in Sources */,
+				1434AC422833FBD900B053E1 /* ImageData.swift in Sources */,
 				1434AC422833FBD900B053E1 /* ImageData.swift in Sources */,
 				B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */,
 				B85E9D032835E77E00B81D36 /* SelectedImageCollectionViewCell.swift in Sources */,

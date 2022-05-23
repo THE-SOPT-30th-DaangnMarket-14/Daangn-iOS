@@ -23,7 +23,9 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            
             selectedImages.append(image)
+            NotificationCenter.default.post(name: Notification.Name("DidTakeAPictureNotification"), object: nil)
         }
         dismiss(animated: true)
     }
