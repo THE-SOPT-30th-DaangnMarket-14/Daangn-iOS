@@ -46,7 +46,7 @@ class WritingViewController: UIViewController {
     }
     
     // MARK: - setup 메서드
-    func setUp() {
+    private func setUp() {
         
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bounces = false
@@ -59,7 +59,7 @@ class WritingViewController: UIViewController {
         priceTextView.keyboardType = .numberPad
     }
     
-    func configureUI() {
+    private func configureUI() {
 
         [SelectedImageCollectionViewCell.className,
          CameraButtonCollectionViewCell.className].forEach {
@@ -84,7 +84,7 @@ class WritingViewController: UIViewController {
         }
     }
     
-    func setToolBar() {
+    private func setToolBar() {
         
         let keyboardToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 40))
         
@@ -98,7 +98,7 @@ class WritingViewController: UIViewController {
         [titleTextView, priceTextView, contentTextView].forEach { $0?.inputAccessoryView = keyboardToolBar }
     }
     
-    func setNavigationBar() {
+    private func setNavigationBar() {
 
         self.navigationController?.navigationBar.isHidden = true
         let daangnNaviBar = DaangnNaviBar.createMyClassView()
@@ -113,9 +113,6 @@ class WritingViewController: UIViewController {
         daangnNaviBar.doneButtonAction = {
             self.dismiss(animated: true, completion: nil)
         }
-        
-        daangnNaviBar.setUp()
-        
     }
 }
 
