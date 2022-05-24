@@ -18,6 +18,7 @@ final class DaangnNaviBar: UIView {
     @IBOutlet weak var doneButton: UIButton!
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         setUp()
     }
     
