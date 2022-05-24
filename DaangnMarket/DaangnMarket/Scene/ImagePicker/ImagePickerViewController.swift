@@ -71,7 +71,6 @@ class ImagePickerViewController: UIViewController {
             
             self.dismiss(animated: true)
         }
-        daangnNaviBar.setUp()
         
         navigationBarView.addSubview(daangnNaviBar)
     }
