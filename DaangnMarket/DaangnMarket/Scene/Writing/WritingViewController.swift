@@ -11,6 +11,10 @@ class WritingViewController: UIViewController {
     
     // MARK: - 변수
     
+    let placeholderColor: UIColor = .daangnGray03
+    let textColor: UIColor = .daangnBlack
+    let activateButtonColor: UIColor = .daangnOrange
+    
     var selectedImage: [UIImage] = []{
         didSet{
             selectedImageCollectionView.reloadData()
@@ -147,9 +151,13 @@ extension WritingViewController: CameraButtonDelegate {
 // MARK: - TextView Delegate
 extension WritingViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        isDoneButtonEnabled()
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .daangnGray03 {
-            textView.textColor = .daangnBlack
+        if textView.textColor == placeholderColor {
+            textView.textColor = textColor
             textView.text = nil
         }
     }
@@ -158,8 +166,6 @@ extension WritingViewController: UITextViewDelegate {
         
         guard let textViewText = textView.text else { return true }
         let newLength = textViewText.count + text.count - range.length
-        
-        isDoneButtonEnabled()
         
         if textView.tag == 1 {
             return newLength <= 15
@@ -172,10 +178,8 @@ extension WritingViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
-        isDoneButtonEnabled()
-        
         if textView.text.isEmpty {
-            textView.textColor = .daangnGray03
+            textView.textColor = placeholderColor
             if textView.tag == 1 {
                 textView.text = "글 제목"
             } else if textView.tag == 2 {
@@ -190,12 +194,12 @@ extension WritingViewController: UITextViewDelegate {
         
         guard let daangnNaviBar = navigationBar.subviews.first as? DaangnNaviBar else {return}
         if titleTextView.text.count >= 1 && priceTextView.text.count >= 1 && contentTextView.text.count >= 1 &&
-            titleTextView.textColor == .daangnBlack && priceTextView.textColor == .daangnBlack && contentTextView.textColor == .daangnBlack{
+            titleTextView.textColor == textColor && priceTextView.textColor == textColor && contentTextView.textColor == textColor {
             daangnNaviBar.doneButton.isEnabled = true
-            daangnNaviBar.doneButton.tintColor = .daangnOrange
+            daangnNaviBar.doneButton.tintColor = activateButtonColor
         } else {
             daangnNaviBar.doneButton.isEnabled = false
-            daangnNaviBar.doneButton.tintColor = .daangnBlack
+            daangnNaviBar.doneButton.tintColor = textColor
         }
     }
 }
