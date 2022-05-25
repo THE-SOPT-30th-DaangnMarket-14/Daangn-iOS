@@ -72,16 +72,22 @@ extension ImagePickerViewController {
         let fetchOption = PHFetchOptions()
         fetchOption.sortDescriptors = [sortDesriptor]
         let assets = PHAsset.fetchAssets(with: .image, options: fetchOption)
+        
         assets.enumerateObjects{ asset, index, stop in
             let size = CGSize(width: 123, height: 123)
             let imageManager = PHImageManager.default()
             let requestOption = PHImageRequestOptions()
-            requestOption.isSynchronous = true
+            //requestOption.isSynchronous = true
             imageManager.requestImage(for: asset,
                                                   targetSize: size,
                                                   contentMode: .aspectFit,
                                                   options: requestOption)
             { image, resultInfo in
+                let isDegraded = (resultInfo?[PHImageResultIsDegradedKey] as? Bool) ?? false
+                if !isDegraded {
+                    self.images.removeSubrange(1...self.images.endIndex)
+                }
+                
                 if let image = image {
                     self.images.append(ImageData(image: image))
                 }
