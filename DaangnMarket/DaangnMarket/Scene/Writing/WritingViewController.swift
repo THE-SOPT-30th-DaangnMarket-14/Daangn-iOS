@@ -214,7 +214,6 @@ extension WritingViewController: UITextViewDelegate {
         // 앞에 붙은 원화는 떼고 콤마 붙여야하기 때문에
         let numberFirstIndex = textView.text.index(textView.text.startIndex, offsetBy: 2)
         let textViewText = String(textView.text[numberFirstIndex...])
-        print(numberFirstIndex, textViewText)
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
