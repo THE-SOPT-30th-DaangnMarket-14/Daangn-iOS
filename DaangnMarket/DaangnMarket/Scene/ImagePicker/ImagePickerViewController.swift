@@ -37,9 +37,12 @@ class ImagePickerViewController: UIViewController {
         super.viewDidLoad()
         
         configureCollectionView()
-        requestAccessPhotoLibrary()
         configureNavigationBarView()
         addNotificationObserver()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        requestAccessPhotoLibrary()
     }
     
     private func configureCollectionView(){

@@ -73,32 +73,28 @@ extension ImagePickerViewController {
         fetchOption.sortDescriptors = [sortDesriptor]
         let assets = PHAsset.fetchAssets(with: .image, options: fetchOption)
         
-        assets.enumerateObjects{ asset, index, stop in
-            let size = CGSize(width: 123, height: 123)
-            let imageManager = PHImageManager.default()
-            let requestOption = PHImageRequestOptions()
-            //requestOption.isSynchronous = true
-            imageManager.requestImage(for: asset,
-                                                  targetSize: size,
-                                                  contentMode: .aspectFit,
-                                                  options: requestOption)
-            { image, resultInfo in
-                let isDegraded = (resultInfo?[PHImageResultIsDegradedKey] as? Bool) ?? false
-                if !isDegraded {
-                    self.images.removeSubrange(1...self.images.endIndex)
-                }
+        DispatchQueue.global().async {
+            assets.enumerateObjects{ asset, index, stop in
+                let size = CGSize(width: 123, height: 123)
+                let imageManager = PHImageManager.default()
+                let requestOption = PHImageRequestOptions()
                 
-                if let image = image {
+                imageManager.requestImage(for: asset,
+                                          targetSize: size,
+                                          contentMode: .aspectFit,
+                                          options: requestOption)
+                { image, resultInfo in
+                    let isDegraded = (resultInfo?[PHImageResultIsDegradedKey] as? Bool) ?? false
+                    if isDegraded {return}
+
+                    guard let image = image else {return}
                     self.images.append(ImageData(image: image))
-                }
-                
-                if index == assets.count-1 {
+
                     DispatchQueue.main.async {
                         self.imageCollectionView.reloadData()
                     }
                 }
             }
         }
-        
     }
 }
