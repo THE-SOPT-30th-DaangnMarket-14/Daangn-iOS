@@ -13,6 +13,11 @@
 		1434AC422833FBD900B053E1 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434AC412833FBD900B053E1 /* ImageData.swift */; };
 		B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */; };
 		B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DF2833ED4E004EA0D9 /* CALayer+.swift */; };
+		B82B74202845D3E7005EB41E /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B741F2845D3E7005EB41E /* APIConstants.swift */; };
+		B82B74222845DFAB005EB41E /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B74212845DFAB005EB41E /* APITarget.swift */; };
+		B82B74242845E01E005EB41E /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B74232845E01E005EB41E /* TargetType.swift */; };
+		B82B74262845E144005EB41E /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B74252845E144005EB41E /* HTTPHeaderField.swift */; };
+		B82B74282845E1AD005EB41E /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B74272845E1AD005EB41E /* NetworkResult.swift */; };
 		B83565572838A1F30052DD91 /* DaangnNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */; };
 		B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83565582838A95D0052DD91 /* DaangnNaviBar.swift */; };
 		B85E9D032835E77E00B81D36 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E9D012835E77E00B81D36 /* SelectedImageCollectionViewCell.swift */; };
@@ -55,6 +60,11 @@
 		1434AC412833FBD900B053E1 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		B81438DF2833ED4E004EA0D9 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		B82B741F2845D3E7005EB41E /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		B82B74212845DFAB005EB41E /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
+		B82B74232845E01E005EB41E /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		B82B74252845E144005EB41E /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
+		B82B74272845E1AD005EB41E /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaangnNavigationBar.xib; sourceTree = "<group>"; };
 		B83565582838A95D0052DD91 /* DaangnNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaangnNaviBar.swift; sourceTree = "<group>"; };
 		B85E9D012835E77E00B81D36 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +123,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		B82B741E2845D3D2005EB41E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B82B741F2845D3E7005EB41E /* APIConstants.swift */,
+				B82B74212845DFAB005EB41E /* APITarget.swift */,
+				B82B74232845E01E005EB41E /* TargetType.swift */,
+				B82B74252845E144005EB41E /* HTTPHeaderField.swift */,
+				B82B74272845E1AD005EB41E /* NetworkResult.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		B83565552838A1CB0052DD91 /* DaangnNaviBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +158,7 @@
 		C73BFF50282F8CFF003ECFF8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				B82B741E2845D3D2005EB41E /* Network */,
 				B83565552838A1CB0052DD91 /* DaangnNaviBar */,
 				C7962C212835561E0005B27C /* DaangnTabBar */,
 				C7D8A53A2832A2C4004CA3F9 /* Extension */,
@@ -358,12 +381,17 @@
 				C784C669282F8B5100AB0A2A /* ViewController.swift in Sources */,
 				C7962C0D28334C9C0005B27C /* SaleTableViewCell.swift in Sources */,
 				B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */,
+				B82B74262845E144005EB41E /* HTTPHeaderField.swift in Sources */,
 				C784C665282F8B5100AB0A2A /* AppDelegate.swift in Sources */,
+				B82B74242845E01E005EB41E /* TargetType.swift in Sources */,
+				B82B74202845D3E7005EB41E /* APIConstants.swift in Sources */,
 				C7962C23283556300005B27C /* DaangnTabBarController.swift in Sources */,
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				B85E9D0B2836622B00B81D36 /* NSMutableAttributedString+.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
+				B82B74282845E1AD005EB41E /* NetworkResult.swift in Sources */,
 				C7962C122833DC820005B27C /* UIView+.swift in Sources */,
+				B82B74222845DFAB005EB41E /* APITarget.swift in Sources */,
 				141CCD5E28361FC800689297 /* ImagePickerViewController+.swift in Sources */,
 				C7962C142833DD790005B27C /* Int+.swift in Sources */,
 				C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */,
