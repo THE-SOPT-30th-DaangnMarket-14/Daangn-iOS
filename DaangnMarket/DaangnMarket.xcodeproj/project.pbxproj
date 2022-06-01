@@ -13,6 +13,8 @@
 		1434AC422833FBD900B053E1 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434AC412833FBD900B053E1 /* ImageData.swift */; };
 		143855D52847648C00CFAED2 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855D42847648C00CFAED2 /* APIConstants.swift */; };
 		143855D72847801800CFAED2 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855D62847801800CFAED2 /* NetworkResult.swift */; };
+		143855DB2847853500CFAED2 /* ResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855DA2847853500CFAED2 /* ResponseBody.swift */; };
+		143855DF284787ED00CFAED2 /* SalesPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855DE284787ED00CFAED2 /* SalesPostModel.swift */; };
 		B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */; };
 		B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DF2833ED4E004EA0D9 /* CALayer+.swift */; };
 		B83565572838A1F30052DD91 /* DaangnNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */; };
@@ -57,6 +59,8 @@
 		1434AC412833FBD900B053E1 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		143855D42847648C00CFAED2 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		143855D62847801800CFAED2 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		143855DA2847853500CFAED2 /* ResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBody.swift; sourceTree = "<group>"; };
+		143855DE284787ED00CFAED2 /* SalesPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesPostModel.swift; sourceTree = "<group>"; };
 		B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		B81438DF2833ED4E004EA0D9 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaangnNavigationBar.xib; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 				143855D62847801800CFAED2 /* NetworkResult.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		143855D82847830C00CFAED2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				143855DA2847853500CFAED2 /* ResponseBody.swift */,
+				143855DE284787ED00CFAED2 /* SalesPostModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B83565552838A1CB0052DD91 /* DaangnNaviBar */ = {
@@ -211,6 +224,7 @@
 		C784C663282F8B5100AB0A2A /* DaangnMarket */ = {
 			isa = PBXGroup;
 			children = (
+				143855D82847830C00CFAED2 /* Model */,
 				143855D32847638F00CFAED2 /* Network */,
 				C73BFF50282F8CFF003ECFF8 /* Scene */,
 				C784C680282F8BA400AB0A2A /* Font */,
@@ -362,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85E9D082836527300B81D36 /* CameraButtonCollectionViewCell.swift in Sources */,
+				143855DF284787ED00CFAED2 /* SalesPostModel.swift in Sources */,
 				1434AC3C2833A3B400B053E1 /* ImageCollectionViewCell.swift in Sources */,
 				B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */,
 				1434AC422833FBD900B053E1 /* ImageData.swift in Sources */,
@@ -379,6 +394,7 @@
 				C73BFF5D282F8E6A003ECFF8 /* ImagePickerViewController.swift in Sources */,
 				B85E9D0B2836622B00B81D36 /* NSMutableAttributedString+.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
+				143855DB2847853500CFAED2 /* ResponseBody.swift in Sources */,
 				C7962C122833DC820005B27C /* UIView+.swift in Sources */,
 				141CCD5E28361FC800689297 /* ImagePickerViewController+.swift in Sources */,
 				C7962C142833DD790005B27C /* Int+.swift in Sources */,
