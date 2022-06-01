@@ -29,6 +29,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchSalePost()
         registerCell()
         configureUI()
     }
@@ -65,5 +67,21 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.setData(data: salePostData[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - Network
+extension HomeViewController {
+    private func fetchSalePost() {
+        GetSalePostService.shared.requestGetSalePost { networkResult in
+            switch networkResult {
+            case .success(let response):
+                guard let salePostData = response as? [SalePostDataModel] else { return }
+                self.salePostData = salePostData
+                self.saleTableView.reloadData()
+            default:
+                debugPrint(networkResult)
+            }
+        }
     }
 }
