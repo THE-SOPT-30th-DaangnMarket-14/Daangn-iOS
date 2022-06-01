@@ -12,6 +12,6 @@ struct APIConstants {
     static let baseURL = "http://52.78.114.176:8000"
     
     //MARK: - Feature URL
-    static let getAllSalesPostsURL = "/item"
-    static let addSalesPostURL = "/item"
+    static let getAllSalesPostsURL = baseURL + "/item"
+    static let addSalesPostURL = baseURL + "/item"
 }
