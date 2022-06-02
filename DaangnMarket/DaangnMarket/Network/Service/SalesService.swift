@@ -57,7 +57,7 @@ class SalesService {
             images.forEach{ image in
                 if let imageData = image.pngData() {
                     print("\(imageData).png")
-                    multipartFormData.append(imageData, withName: "\(imageData).png", fileName: "\(imageData).png", mimeType: "image/png")
+                    multipartFormData.append(imageData, withName: "image", fileName: "\(imageData).png", mimeType: "image/png")
                 }
             }
         }, to: url, usingThreshold: UInt64.init(), method: .post, headers: headers)
