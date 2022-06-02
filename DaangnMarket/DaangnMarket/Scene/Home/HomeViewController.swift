@@ -32,9 +32,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchSalePost()
         registerCell()
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchSalePost()
     }
     
     private func registerCell() {
@@ -45,8 +49,8 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         localSelectBtn.setTitle("서림동", for: .normal)
         orangeDotImageView.isHidden = false
+        refreshControl.tintColor = .daangnOrange
         saleTableView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshSaleTableView), for: .valueChanged)
     }
     
     @IBAction func tapLocalSelectBtn(_ sender: Any) {
@@ -58,10 +62,6 @@ class HomeViewController: UIViewController {
         writingViewController.modalPresentationStyle = .fullScreen
         
         self.present(writingViewController, animated: true)
-    }
-    
-    @objc private func refreshSaleTableView() {
-        self.saleTableView.reloadData()
     }
 }
 
