@@ -17,9 +17,9 @@ final class DaangnNaviBar: UIView {
     @IBOutlet weak var dropdownImageView: UIImageView!
     @IBOutlet weak var doneButton: UIButton!
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setUp()
     }
     
     class func createMyClassView() -> DaangnNaviBar {

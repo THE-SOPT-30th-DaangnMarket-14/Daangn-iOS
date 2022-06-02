@@ -37,8 +37,12 @@ class ImagePickerViewController: UIViewController {
         super.viewDidLoad()
         
         configureCollectionView()
-        requestAccessPhotoLibrary()
         configureNavigationBarView()
+        addNotificationObserver()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        requestAccessPhotoLibrary()
     }
     
     private func configureCollectionView(){
@@ -61,7 +65,35 @@ class ImagePickerViewController: UIViewController {
         daangnNaviBar.doneButton.setAttributedTitle(NSAttributedString(string: "확인"), for: .disabled)
         daangnNaviBar.doneButton.isEnabled = false
         
+        daangnNaviBar.dismissButtonAction = {
+            self.dismiss(animated: true)
+        }
+        daangnNaviBar.doneButtonAction = {
+            guard let writingViewController = self.presentingViewController as? WritingViewController else {return}
+            writingViewController.selectedImage = self.selectedImages
+            
+            self.dismiss(animated: true)
+        }
+        
         navigationBarView.addSubview(daangnNaviBar)
+    }
+    
+    private func addNotificationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didTakeAPicture),
+                                               name: Notification.Name("DidTakeAPictureNotification"),
+                                               object: nil)
+    }
+    
+    //MARK: - @objc Method
+    @objc private func didTakeAPicture(){
+        guard let daangnNaviBar = navigationBarView.subviews.first as? DaangnNaviBar else {return}
+        daangnNaviBar.doneButton.sendActions(for: .touchUpInside)
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

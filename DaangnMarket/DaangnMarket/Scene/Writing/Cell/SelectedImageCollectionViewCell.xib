@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3I-ge-Q5U">
                         <rect key="frame" x="0.0" y="25" width="125.5" height="125"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios_img_home_list" translatesAutoresizingMaskIntoConstraints="NO" id="EPB-O6-iAz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EPB-O6-iAz">
                                 <rect key="frame" x="0.0" y="0.0" width="125.5" height="125"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대표 사진" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Is-In-jBA">
@@ -81,7 +81,6 @@
     </objects>
     <resources>
         <image name="icDeleteCircle" width="24" height="24"/>
-        <image name="ios_img_home_list" width="98" height="98"/>
         <namedColor name="daangnBlack">
             <color red="0.12941176470588237" green="0.14117647058823529" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

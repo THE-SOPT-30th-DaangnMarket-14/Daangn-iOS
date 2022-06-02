@@ -23,7 +23,9 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            
             selectedImages.append(image)
+            NotificationCenter.default.post(name: Notification.Name("DidTakeAPictureNotification"), object: nil)
         }
         dismiss(animated: true)
     }
@@ -70,27 +72,29 @@ extension ImagePickerViewController {
         let fetchOption = PHFetchOptions()
         fetchOption.sortDescriptors = [sortDesriptor]
         let assets = PHAsset.fetchAssets(with: .image, options: fetchOption)
-        assets.enumerateObjects{ asset, index, stop in
-            let size = CGSize(width: 123, height: 123)
-            let imageManager = PHImageManager.default()
-            let requestOption = PHImageRequestOptions()
-            requestOption.isSynchronous = true
-            imageManager.requestImage(for: asset,
-                                                  targetSize: size,
-                                                  contentMode: .aspectFit,
-                                                  options: requestOption)
-            { image, resultInfo in
-                if let image = image {
-                    self.images.append(ImageData(image: image))
-                }
+        
+        DispatchQueue.global().async {
+            assets.enumerateObjects{ asset, index, stop in
+                let size = CGSize(width: 123, height: 123)
+                let imageManager = PHImageManager.default()
+                let requestOption = PHImageRequestOptions()
                 
-                if index == assets.count-1 {
+                imageManager.requestImage(for: asset,
+                                          targetSize: size,
+                                          contentMode: .aspectFit,
+                                          options: requestOption)
+                { image, resultInfo in
+                    let isDegraded = (resultInfo?[PHImageResultIsDegradedKey] as? Bool) ?? false
+                    if isDegraded {return}
+
+                    guard let image = image else {return}
+                    self.images.append(ImageData(image: image))
+
                     DispatchQueue.main.async {
                         self.imageCollectionView.reloadData()
                     }
                 }
             }
         }
-        
     }
 }
