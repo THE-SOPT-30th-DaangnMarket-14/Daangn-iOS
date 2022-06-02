@@ -79,7 +79,8 @@ class SalesService {
     private func checkStatus(_ status: Int, data: Data) -> NetworkResult<Any> {
         switch status {
         case 200: return isValidData(data)
-        case 204: return .success(nil)
+        case 201, 204: return .success(nil)
+        case 400: return .requestErr(nil)
         case 500: return .serverErr
         default: return .networkFail
         }
