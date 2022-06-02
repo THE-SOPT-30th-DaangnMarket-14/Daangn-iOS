@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SaleTableViewCell: UITableViewCell {
     
@@ -26,10 +27,24 @@ class SaleTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(data: SaleModel) {
-        postImageView.image = UIImage(named: data.imageName)
-        postTitleLabel.text = data.titleName
-        localTimeLabel.text = "\(data.localName) ・ \(data.updateTime) 분/시간 전"
+    func setData(data: SalesPostModel) {
+        configurePostImageFromURL(data.image)
+        postTitleLabel.text = data.title
+        localTimeLabel.text = data.timeBefore
         priceLabel.text = "\(data.price.commaToString()) 원"
+    }
+    
+    private func configurePostImageFromURL(_ imageURL: String) {
+        let request = AF.request(imageURL, method: .get)
+        
+        request.responseData{ [weak self] response in
+            switch response.result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else {return}
+                self?.postImageView.image = image
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
