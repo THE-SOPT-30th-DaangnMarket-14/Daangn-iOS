@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var saleTableView: UITableView! {
         didSet {
             saleTableView.dataSource = self
+            saleTableView.delegate = self
             saleTableView.rowHeight = 127
             saleTableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
@@ -25,7 +26,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var salePostData: [SalePostDataModel] = []
+    private var salePostData: [SalePostDataModel] = []
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,8 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         localSelectBtn.setTitle("서림동", for: .normal)
         orangeDotImageView.isHidden = false
+        saleTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshSaleTableView), for: .valueChanged)
     }
     
     @IBAction func tapLocalSelectBtn(_ sender: Any) {
@@ -54,6 +58,10 @@ class HomeViewController: UIViewController {
         writingViewController.modalPresentationStyle = .fullScreen
         
         self.present(writingViewController, animated: true)
+    }
+    
+    @objc private func refreshSaleTableView() {
+        self.saleTableView.reloadData()
     }
 }
 
@@ -70,6 +78,15 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+extension HomeViewController: UITableViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if self.refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+            self.fetchSalePost()
+        }
+    }
+}
+
 // MARK: - Network
 extension HomeViewController {
     private func fetchSalePost() {
@@ -78,7 +95,9 @@ extension HomeViewController {
             case .success(let response):
                 guard let salePostData = response as? [SalePostDataModel] else { return }
                 self.salePostData = salePostData
-                self.saleTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.saleTableView.reloadData()
+                }
             default:
                 debugPrint(networkResult)
             }
