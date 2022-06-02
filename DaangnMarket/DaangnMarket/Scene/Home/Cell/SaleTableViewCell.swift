@@ -29,7 +29,7 @@ class SaleTableViewCell: UITableViewCell {
     
     func setData(data: SalePostDataModel) {
         postImageView.setImageColor(color: .lightGray)
-        postImageView.setImageUrl(data.image)
+        postImageView.setImageUrl(data.image ?? "")
         postTitleLabel.text = data.title
         localTimeLabel.text = "\("서림동") ・ \(data.timeBefore)"
         priceLabel.text = "\(data.price.commaToString()) 원"
