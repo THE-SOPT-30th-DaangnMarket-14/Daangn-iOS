@@ -119,15 +119,17 @@ class WritingViewController: UIViewController {
         }
         
         daangnNaviBar.doneButtonAction = {
-            // postitem
-            self.dismiss(animated: true, completion: nil)
+            self.postItem()
         }
     }
-}
-
-// MARK: - Done Button 서버통신
-func postItem() {
-    
+    // MARK: Done Button 서버통신
+    private func postItem() {
+        debugPrint(SalePostBodyModel(title: self.titleTextView.text, price: self.priceTextView.text.removeCommaStringToInt(), contents: self.contentTextView.text))
+        self.postSalePost(data:
+                            SalePostBodyModel(title: self.titleTextView.text, price: self.priceTextView.text.removeCommaStringToInt(), contents: self.contentTextView.text)
+                          , imageList: self.selectedImage)
+        
+    }
 }
 
 // MARK: - Action
@@ -348,4 +350,18 @@ extension WritingViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 
+}
+
+// MARK: - Network
+extension WritingViewController {
+    private func postSalePost(data: SalePostBodyModel, imageList: [UIImage]) {
+        PostSalePostService.shared.requestPostSalePost(data: data, imageList: imageList) { networkResult in
+            switch networkResult {
+            case .success:
+                self.dismiss(animated: true)
+            default:
+                debugPrint(networkResult)
+            }
+        }
+    }
 }

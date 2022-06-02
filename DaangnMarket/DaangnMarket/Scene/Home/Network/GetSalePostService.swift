@@ -43,7 +43,6 @@ struct GetSalePostService {
     private func isVaildGetSalePostData(data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<[SalePostDataModel]>.self, from: data) else { return .pathErr }
-        debugPrint(decodedData)
         return .success(decodedData.data ?? "None-Data")
     }
 }
