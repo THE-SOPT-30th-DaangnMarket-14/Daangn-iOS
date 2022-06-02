@@ -16,6 +16,7 @@
 		143855DB2847853500CFAED2 /* ResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855DA2847853500CFAED2 /* ResponseBody.swift */; };
 		143855DF284787ED00CFAED2 /* SalesPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855DE284787ED00CFAED2 /* SalesPostModel.swift */; };
 		143855E42847927300CFAED2 /* SalesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143855E32847927300CFAED2 /* SalesService.swift */; };
+		144C820C28487D8400B96ED0 /* WrtingSalesPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144C820B28487D8400B96ED0 /* WrtingSalesPost.swift */; };
 		B81438DE2833BFBE004EA0D9 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */; };
 		B81438E02833ED4E004EA0D9 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81438DF2833ED4E004EA0D9 /* CALayer+.swift */; };
 		B83565572838A1F30052DD91 /* DaangnNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */; };
@@ -63,6 +64,7 @@
 		143855DA2847853500CFAED2 /* ResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseBody.swift; sourceTree = "<group>"; };
 		143855DE284787ED00CFAED2 /* SalesPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesPostModel.swift; sourceTree = "<group>"; };
 		143855E32847927300CFAED2 /* SalesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesService.swift; sourceTree = "<group>"; };
+		144C820B28487D8400B96ED0 /* WrtingSalesPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrtingSalesPost.swift; sourceTree = "<group>"; };
 		B81438DD2833BFBE004EA0D9 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		B81438DF2833ED4E004EA0D9 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		B83565562838A1F30052DD91 /* DaangnNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaangnNavigationBar.xib; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				143855DA2847853500CFAED2 /* ResponseBody.swift */,
 				143855DE284787ED00CFAED2 /* SalesPostModel.swift */,
+				144C820B28487D8400B96ED0 /* WrtingSalesPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				B85E9D0B2836622B00B81D36 /* NSMutableAttributedString+.swift in Sources */,
 				C784C667282F8B5100AB0A2A /* SceneDelegate.swift in Sources */,
 				143855DB2847853500CFAED2 /* ResponseBody.swift in Sources */,
+				144C820C28487D8400B96ED0 /* WrtingSalesPost.swift in Sources */,
 				C7962C122833DC820005B27C /* UIView+.swift in Sources */,
 				141CCD5E28361FC800689297 /* ImagePickerViewController+.swift in Sources */,
 				C7962C142833DD790005B27C /* Int+.swift in Sources */,
