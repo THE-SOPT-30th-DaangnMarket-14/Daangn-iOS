@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
                 self?.salesPosts = data
                 self?.saleTableView.reloadData()
             case .requestErr(let error):
-                print(error)
+                print(error ?? "")
             case .pathErr:
                 print("pathErr")
             case .serverErr:
@@ -65,7 +65,6 @@ class HomeViewController: UIViewController {
             case .networkFail:
                 print("networkFail")
             }
-            
         }
     }
     
