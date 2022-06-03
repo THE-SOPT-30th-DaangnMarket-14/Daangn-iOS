@@ -37,10 +37,10 @@ class SalesService {
     }
     
     func addSalesPost(title: String,
-                      price: Int,
+                      price: String,
                       contents: String,
                       images: [UIImage],
-                      compleion: @escaping (NetworkResult<Any>) -> Void
+                      completion: @escaping (NetworkResult<Any>) -> Void
     ){
         let url = APIConstants.addSalesPostURL
         let headers: HTTPHeaders = ["Content-Type" : "multipart/form-data"]
@@ -68,9 +68,9 @@ class SalesService {
                 guard let statusCode = response.response?.statusCode else {return}
                 guard let value = response.value else {return}
                 guard let networkResult = self?.checkStatus(statusCode, data: value) else {return}
-                compleion(networkResult)
+                completion(networkResult)
             case .failure(_):
-                compleion(.networkFail)
+                completion(.networkFail)
             }
         }
     }
