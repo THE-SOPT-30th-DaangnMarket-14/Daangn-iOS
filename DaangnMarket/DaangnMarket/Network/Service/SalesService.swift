@@ -56,7 +56,6 @@ class SalesService {
             }
             images.forEach{ image in
                 if let imageData = image.pngData() {
-                    print("\(imageData).png")
                     multipartFormData.append(imageData, withName: "image", fileName: "\(imageData).png", mimeType: "image/png")
                 }
             }
