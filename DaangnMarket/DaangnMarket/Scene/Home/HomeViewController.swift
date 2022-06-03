@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var itemList: [getItemModel] = []
+    
     @IBOutlet weak var localSelectBtn: UIButton!
     @IBOutlet weak var orangeDotImageView: UIImageView!
     @IBOutlet weak var saleTableView: UITableView! {
@@ -25,17 +27,11 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var saleDummyData = [
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 2, price: 333333),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 1, price: 1004400),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000)
-    ]
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getItem()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
@@ -66,13 +62,38 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return saleDummyData.count
+        return itemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SaleTableViewCell.className, for: indexPath) as? SaleTableViewCell else { return UITableViewCell() }
         
-        cell.setData(data: saleDummyData[indexPath.row])
+        cell.setData(data: itemList[indexPath.row])
         return cell
+    }
+}
+
+extension HomeViewController {
+    
+    func getItem() {
+        APIService.shared.requestGetItem { result in
+            print(result)
+            switch result {
+            case .success(let response):
+                guard let items = response else { return }
+                self.itemList = items
+                DispatchQueue.main.async {
+                    self.saleTableView.reloadData()
+                }
+            case .requestErr(_):
+                print("리퀘스트 에러")
+            case .networkFail:
+                print("네트워크 통신 실패 alert")
+            case .serverErr:
+                print("서버에러")
+            case .pathErr:
+                print("에러")
+            }
+        }
     }
 }
