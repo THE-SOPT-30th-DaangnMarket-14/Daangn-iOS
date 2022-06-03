@@ -14,6 +14,7 @@ class WritingViewController: UIViewController {
     let placeholderColor: UIColor = .daangnGray03
     let textColor: UIColor = .daangnBlack
     let activateButtonColor: UIColor = .daangnOrange
+    var price: Int?
     
     var selectedImage: [UIImage] = []{
         didSet{
@@ -119,8 +120,7 @@ class WritingViewController: UIViewController {
         }
         
         daangnNaviBar.doneButtonAction = {
-            // postitem
-            self.dismiss(animated: true, completion: nil)
+            self.postItem()
         }
     }
 }
@@ -225,6 +225,7 @@ extension WritingViewController: UITextViewDelegate {
         
         // 방금 새로 들어온 text 합쳐주기
         var beforeForemattedString = removeAllSeprator + text
+        price = Int(beforeForemattedString)
         
         // 합쳐준 숫자에서 다시 콤마 넣어주기
         if formatter.number(from: text) != nil {
@@ -347,5 +348,27 @@ extension WritingViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 16)
         }
     }
+}
 
+extension WritingViewController {
+    
+    func postItem() {
+
+        APIService.shared.requestPostItem(title: titleTextView.text!, price: price ?? 0, contents: contentTextView.text!, images: selectedImage, completion: { result in
+            print(result)
+            switch result {
+            case .success(let response):
+                print(response)
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(_):
+                print("리퀘스트 에러")
+            case .networkFail:
+                print("네트워크 통신 실패 alert")
+            case .serverErr:
+                print("서버에러")
+            case .pathErr:
+                print("에러")
+            }
+        })
+    }
 }
