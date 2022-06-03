@@ -118,16 +118,38 @@ class WritingViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
         
-        daangnNaviBar.doneButtonAction = {
-            // postitem
-            self.dismiss(animated: true, completion: nil)
+        daangnNaviBar.doneButtonAction = { [weak self] in
+            self?.postItem()
         }
     }
-}
-
-// MARK: - Done Button 서버통신
-func postItem() {
     
+    // MARK: - Done Button 서버통신
+    func postItem() {
+        guard let title = self.titleTextView.text else {return}
+        guard let priceText = self.priceTextView.text else {return}
+        guard let content = self.contentTextView.text else {return}
+        let price = String(priceText.dropFirst(2).replacingOccurrences(of: ",", with: ""))
+        
+        SalesService.shared.addSalesPost(title: title,
+                                         price: price,
+                                         contents: content,
+                                         images: self.selectedImage){ [weak self] networkResult in
+            switch networkResult {
+            case .success(_):
+                print("아이템 생성 성공")
+                self?.dismiss(animated: true, completion: nil)
+                return
+            case .requestErr(let error):
+                print(error ?? "")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
 }
 
 // MARK: - Action

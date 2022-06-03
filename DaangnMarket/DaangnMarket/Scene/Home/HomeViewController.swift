@@ -25,21 +25,18 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var saleDummyData = [
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 2, price: 333333),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 1, price: 1004400),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000),
-        SaleModel(imageName: "iosImgHomeList", titleName: "폰케팔아염", localName: "서림동", updateTime: 3, price: 10000)
-    ]
+    var salesPosts: [SalesPostModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchAllSalesPosts()
     }
     
     private func registerCell() {
@@ -50,6 +47,25 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         localSelectBtn.setTitle("서림동", for: .normal)
         orangeDotImageView.isHidden = false
+    }
+    
+    private func fetchAllSalesPosts(){
+        SalesService.shared.getAllSalesPosts{ [weak self] networkResult in
+            switch networkResult {
+            case .success(let data):
+                guard let data = data as? [SalesPostModel] else {return}
+                self?.salesPosts = data
+                self?.saleTableView.reloadData()
+            case .requestErr(let error):
+                print(error ?? "")
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
     }
     
     @IBAction func tapLocalSelectBtn(_ sender: Any) {
@@ -66,13 +82,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return saleDummyData.count
+        return salesPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SaleTableViewCell.className, for: indexPath) as? SaleTableViewCell else { return UITableViewCell() }
         
-        cell.setData(data: saleDummyData[indexPath.row])
+        cell.setData(data: salesPosts[indexPath.row])
         return cell
     }
 }
