@@ -55,6 +55,7 @@
 		C7D8A5392832A0E8004CA3F9 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D8A5382832A0E8004CA3F9 /* Colorsets.xcassets */; };
 		C7D8A53C2832A2CC004CA3F9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53B2832A2CC004CA3F9 /* UIColor+.swift */; };
 		C7D8A54028334B81004CA3F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */; };
+		C7F726CC2849E03200D3F5AD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F726CB2849E03200D3F5AD /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		C7D8A53D2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		C7D8A53E2832A576004CA3F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C7D8A53F28334B81004CA3F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C7F726CB2849E03200D3F5AD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 		C73BFF50282F8CFF003ECFF8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C7F726CA2849E02A00D3F5AD /* Base */,
 				C7176BD2284727C700401099 /* Network */,
 				B83565552838A1CB0052DD91 /* DaangnNaviBar */,
 				C7962C212835561E0005B27C /* DaangnTabBar */,
@@ -320,6 +323,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		C7F726CA2849E02A00D3F5AD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C7F726CB2849E03200D3F5AD /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -416,6 +427,7 @@
 			files = (
 				C7176BDE28472ADF00401099 /* SalePostDataModel.swift in Sources */,
 				B85E9D082836527300B81D36 /* CameraButtonCollectionViewCell.swift in Sources */,
+				C7F726CC2849E03200D3F5AD /* BaseViewController.swift in Sources */,
 				1434AC3C2833A3B400B053E1 /* ImageCollectionViewCell.swift in Sources */,
 				B83565592838A95D0052DD91 /* DaangnNaviBar.swift in Sources */,
 				C70ECC6D2848DED000685839 /* SalePostBodyModel.swift in Sources */,
