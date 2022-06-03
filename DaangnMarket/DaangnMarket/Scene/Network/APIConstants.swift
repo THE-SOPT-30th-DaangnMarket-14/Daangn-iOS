@@ -16,14 +16,6 @@ struct APIConstants {
     static let getSalePost = baseURL + "/item"
     static let postSalePost = baseURL + "/item"
     
-    static func getMyPlayListDetailURL(id: String) -> String {
-        return baseURL + "/playlist/\(id)"
-    }
-    
-    static func likeMyPlayListURL(id: String) -> String {
-        return baseURL + "/playlist/\(id)/like"
-    }
-    
     // MARK: Header
     static let jsonHeader: HTTPHeaders = ["Content-Type": "application/json"]
     static let multipartHeader: HTTPHeaders = ["Content-Type": "multipart/form-data"]
