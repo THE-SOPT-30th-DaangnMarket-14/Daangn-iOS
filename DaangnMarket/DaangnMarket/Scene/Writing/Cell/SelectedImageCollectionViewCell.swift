@@ -33,6 +33,7 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
         
         baseView.makeRounded(cornerRadius: 4)
         firstImageLabel.text = "대표 사진"
+        selectedImageView.contentMode = .scaleAspectFit
     }
     
     @objc func deleteButtonClicked() {
