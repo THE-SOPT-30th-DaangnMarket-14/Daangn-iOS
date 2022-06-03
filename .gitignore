@@ -141,3 +141,5 @@ iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,macos,cocoapods
 Client-iOS/Client-iOS.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+DaangnMarket/DaangnMarket.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+DaangnMarket/DaangnMarket.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved

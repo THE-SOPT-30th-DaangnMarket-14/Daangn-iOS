@@ -12,6 +12,7 @@ class SaleTableViewCell: UITableViewCell {
     @IBOutlet weak var postImageView: UIImageView! {
         didSet {
             postImageView.makeRounded(cornerRadius: 7)
+            postImageView.contentMode = .scaleAspectFill
         }
     }
     @IBOutlet weak var postTitleLabel: UILabel!
@@ -21,15 +22,16 @@ class SaleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(data: SaleModel) {
-        postImageView.image = UIImage(named: data.imageName)
-        postTitleLabel.text = data.titleName
-        localTimeLabel.text = "\(data.localName) ・ \(data.updateTime) 분/시간 전"
+    func setData(data: SalePostDataModel) {
+        postImageView.setImageColor(color: .lightGray)
+        postImageView.setImageUrl(data.image ?? "")
+        postTitleLabel.text = data.title
+        localTimeLabel.text = "\("서림동") ・ \(data.timeBefore)"
         priceLabel.text = "\(data.price.commaToString()) 원"
     }
 }
