@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WritingViewController: UIViewController {
+class WritingViewController: BaseViewController {
     
     // MARK: - 변수
     
@@ -355,12 +355,18 @@ extension WritingViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Network
 extension WritingViewController {
     private func postSalePost(data: SalePostBodyModel, imageList: [UIImage]) {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
         PostSalePostService.shared.requestPostSalePost(data: data, imageList: imageList) { networkResult in
             switch networkResult {
             case .success:
                 self.dismiss(animated: true)
             default:
                 debugPrint(networkResult)
+            }
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
             }
         }
     }

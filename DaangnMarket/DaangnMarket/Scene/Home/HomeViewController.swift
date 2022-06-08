@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     @IBOutlet weak var localSelectBtn: UIButton!
     @IBOutlet weak var orangeDotImageView: UIImageView!
@@ -90,6 +90,10 @@ extension HomeViewController: UITableViewDelegate {
 // MARK: - Network
 extension HomeViewController {
     private func fetchSalePost() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+        
         GetSalePostService.shared.requestGetSalePost { networkResult in
             switch networkResult {
             case .success(let response):
@@ -101,6 +105,10 @@ extension HomeViewController {
             default:
                 debugPrint(networkResult)
             }
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
+            
         }
     }
 }
